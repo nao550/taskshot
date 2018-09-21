@@ -9,3 +9,10 @@ Taskshot is task management system.
 
 
 *タスクの種類
+
+taskist: タスクのリスト,集合体
+tasks: flg, lank, tag, date, sttime, edtime, work、個別のタスク
+work: 作業そのもの
+
+
+タスクオブジェクトは、
