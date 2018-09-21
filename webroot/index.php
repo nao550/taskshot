@@ -4,12 +4,8 @@ require_once '../lib/functions.php';
 require_once '../lib/Smarty.php';
 
 $session = new ftech\Session;
-if ($session->get('mode') == 'uped'){
-  $session->remove('mode');
-  $_POST = '';
-}
-
-var_dump ( $_POST );
+$session->start();
+$session->set('token', session_id());
 
 $task = new ftech\Task;
 $i = 0;
@@ -17,16 +13,15 @@ $i = 0;
 $mode = filter_post('mode');
 
 if ($mode == 'add'){
-  if ($session->get('mode') == ''){
-    $session->set('mode','uped');
-
+  if ($session->get('token') == filter_post('token')){
     $tasks = [
       'lank' => filter_post('lank'),
       'tag' => filter_post('tag'),
       'date' => filter_post('date'),
       'work' => filter_post('work'),
     ];
-    var_dump( $tasks );
+    $session->regenerate();
+    $session->set('token', session_id());
     $task->addTask( $tasks );
   }
 }
@@ -50,6 +45,6 @@ foreach( $task->getAllTask() as $row){
 }
 
 
-
+$smarty->assign('token', $session->get('token'));
 $smarty->assign('arTask', $arTask);
 $smarty->display('index.tpl');

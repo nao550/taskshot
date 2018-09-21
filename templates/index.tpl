@@ -25,8 +25,9 @@
                     <td><input type="text" class="form-control" name="lank" /></td>
                     <td><input type="text" class="form-control" name="tag" /></td>
                     <td><input type="text" class="form-control" name="date" /></td>
-                    <td><input type="text" class="form-control" name="work"></td>
+                    <td><input type="text" class="form-control" name="work" /></td>
                     <td>
+                      <input type="hidden" name="token" value="{$token}" />
                       <button class="btn" type="submit" name="mode" value="add">add</button>
                   </div>
                 </form>
