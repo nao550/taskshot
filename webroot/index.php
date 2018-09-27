@@ -34,6 +34,7 @@ if ($mode == 'end'){
   $task->endTask( filter_post('cd') );
 }
 
+$arTask = array();
 foreach( $task->getAllTask() as $row){
   $arTask[$i] = ['cd' => $row['cd'], 'lank' => $row['lank'],
                  'tag' => $row['tag'], 'date' => $row['date'],
