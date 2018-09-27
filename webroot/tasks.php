@@ -48,4 +48,4 @@ foreach( $task->getAllTask() as $row){
 
 $smarty->assign('token', $session->get('token'));
 $smarty->assign('arTask', $arTask);
-$smarty->display('index.tpl');
+$smarty->display('tasks.tpl');
