@@ -13,6 +13,8 @@
             <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required autofocus>
             <label for="inputPassword" class="sr-only">Password</label>
             <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
+            <input type="hidden" id="mode" name="mode" value="login" />
+            <input type="hidden" id="token" name="token" value="{$token}" />
             <div class="checkbox">
               <label>
                 <input type="checkbox" id="inputRemember" name="inputRemember" /> Remember me

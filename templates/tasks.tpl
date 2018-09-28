@@ -6,6 +6,8 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="header">
           <div class="pagetitle"><h1>TaskShot</h1></div>
+        </div>
+        <div class="main">
           <table class="table">
             <thead>
               <tr>
@@ -53,6 +55,10 @@
               {/foreach}
             </tbody>
           </table>
+          <form class="form-inline" name="logout" action="#" method="post">
+            <input type="hidden" name="mode" value="logout" />
+            <input class="form-control" type="submit" value="logout" />
+          </form>
         </div>
       </div>
     </div>
