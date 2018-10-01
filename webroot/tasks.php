@@ -4,7 +4,9 @@ require_once '../lib/functions.php';
 require_once '../lib/Smarty.php';
 
 $session = new ftech\Session;
+$config = new ftech\Config;
 $session->start();
+$url = $config->getBaseUrl();
 
 if (empty($session->get('token')) || empty($session->get('userid'))) {
     header('location: '. $url . 'index.php');
