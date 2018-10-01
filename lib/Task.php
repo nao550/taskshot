@@ -16,22 +16,24 @@ class Task
         $this->pdo = $config->getPdo();
     }
 
-    public function getAllTask()
+    public function getAllTask( $userid )
     {
-        $sql = 'select * from tasks where compflg = false ';
-        $stm = $this->pdo->prepare($sql);
-        $stm->execute();
+        $sql = 'select * from tasks where compflg = false and userid = :userid';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
+        $stmt->execute();
 
-        return $stm;
+        return $stmt;
     }
 
     public function addTask($tasks)
     {
-        $sql = 'INSERT INTO tasks (lank, tag, date, work, '.
+        $sql = 'INSERT INTO tasks (userid, lank, tag, date, work, '.
            'compflg, regdate ) '.
-           'VALUE (:lank, :tag, :date, :work, 0, NOW());';
+           'VALUE (:userid, :lank, :tag, :date, :work, 0, NOW());';
 
         $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':userid', $tasks['userid'], PDO::PARAM_STR);
         $stmt->bindValue(':lank', $tasks['lank'], PDO::PARAM_STR);
         $stmt->bindValue(':tag', $tasks['tag'], PDO::PARAM_STR);
         $stmt->bindValue(':date', $tasks['date'], PDO::PARAM_STR);

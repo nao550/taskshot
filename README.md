@@ -12,6 +12,7 @@ Taskshot is task management system.
 
 taskist: タスクのリスト,集合体
 tasks: flg, lank, tag, date, sttime, edtime, work、個別のタスク
+task: task class
 work: 作業そのもの
 
 
