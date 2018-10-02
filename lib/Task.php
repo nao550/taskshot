@@ -28,13 +28,13 @@ class Task
 
     public function addTask($tasks)
     {
-        $sql = 'INSERT INTO tasks (userid, lank, tag, date, work, '.
+        $sql = 'INSERT INTO tasks (userid, rank, tag, date, work, '.
            'compflg, regdate ) '.
-           'VALUE (:userid, :lank, :tag, :date, :work, 0, NOW());';
+           'VALUE (:userid, :rank, :tag, :date, :work, 0, NOW());';
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':userid', $tasks['userid'], PDO::PARAM_STR);
-        $stmt->bindValue(':lank', $tasks['lank'], PDO::PARAM_STR);
+        $stmt->bindValue(':rank', $tasks['rank'], PDO::PARAM_STR);
         $stmt->bindValue(':tag', $tasks['tag'], PDO::PARAM_STR);
         $stmt->bindValue(':date', $tasks['date'], PDO::PARAM_STR);
         $stmt->bindValue(':work', $tasks['work'], PDO::PARAM_STR);
@@ -46,10 +46,52 @@ class Task
     public function endTask($cd)
     {
         $sql = "UPDATE tasks set compflg='1' where cd=:cd ;";
-        echo $sql ;
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':cd', $cd, PDO::PARAM_STR);
         $stmt->execute();
         return 0;
+    }
+
+    public function upTask($tasks){
+        $sql = "UPDATE tasks set ";
+
+        switch ($tasks['idclass']) {
+            case 'taskrank':
+                $sql .= " rank=:taskrank ";
+                break;
+            case 'tasktag' :
+                $sql .= " tag=:tasktag ";
+                break;
+            case 'taskdate' :
+                $sql .= " date=:taskdate ";
+                break;
+            case 'taskwork' :
+                $sql .= " work=:taskwork ";
+                break;
+            default:
+                exit();
+        }
+        $sql .= "WHERE cd=:cd ";
+
+        $stmt = $this->pdo->prepare($sql);
+        switch ($tasks['idclass']) {
+            case 'taskrank':
+                $stmt->bindValue(':taskrank', $tasks['idvalue'], PDO::PARAM_STR);
+                break;
+            case 'tasktag':
+                $stmt->bindValue(':tasktag', $tasks['idvalue'], PDO::PARAM_STR);
+                break;
+            case 'taskdate':
+                $stmt->bindValue(':taskdate', $tasks['idvalue'], PDO::PARAM_STR);
+                break;
+            case 'taskwork':
+                $stmt->bindValue(':taskwork', $tasks['idvalue'], PDO::PARAM_STR);
+                break;
+        }
+
+        $stmt->bindValue(':cd', $tasks['cd'], PDO::PARAM_STR);
+        $stmt->execute();
+        return 0;
+
     }
 }

@@ -12,7 +12,7 @@
             <thead>
               <tr>
                 <th class="col-md-1">flg</th>
-                <th class="col-md-1">lank</th>
+                <th class="col-md-1">rank</th>
                 <th class="col-md-2">tag</th>
                 <th class="col-md-2">date</th>
                 <th class="col-md-5">work</th>
@@ -24,12 +24,12 @@
                 <form class="form-inline" name="addtask" action="#" method="POST">
                   <div class="form-group">
                     <td></td>
-                    <td><input type="text" class="form-control" name="lank" /></td>
+                    <td><input type="text" class="form-control" name="rank" /></td>
                     <td><input type="text" class="form-control" name="tag" /></td>
                     <td><input type="text" class="form-control" name="date" /></td>
                     <td><input type="text" class="form-control" name="work" /></td>
                     <td>
-                      <input type="hidden" name="token" value="{$token}" />
+                      <input type="hidden" id="token" name="token" value="{$token}" />
                       <button class="btn" type="submit" name="mode" value="add">add</button>
                   </div>
                 </form>
@@ -39,15 +39,15 @@
                   <form class="form-inline" name="task" action="#" method="post">
                     <div class="form-group">
                       <td>
-                        <input type="hidden" name="cd" value="{$tasks.cd}" />
+                        <input type="hidden" id="taskcd" name="taskcd" value="{$tasks.cd}" />
                         <button class="btn" type="submit" name="mode" value="end">end</button>
                       </td>
-                      <td>{$tasks.lank}</td>
-                      <td>{$tasks.tag}</td>
-                      <td>{$tasks.date}</td>
-                      <td>{$tasks.work}</td>
+                      <td id="taskrank">{$tasks.rank}</td>
+                      <td id="tasktag">{$tasks.tag}</td>
+                      <td id="taskdate">{$tasks.date}</td>
+                      <td id="taskwork">{$tasks.work}</td>
                       <td>
-                        <button class="btn" type="submit" name="mode" value="up">up</button>
+
                       </td>
                     </div>
                   </form>

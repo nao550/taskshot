@@ -21,7 +21,7 @@ if ($mode == 'add') {
     if ($session->get('token') == filter_post('token')) {
         $tasks = [
             'userid' => $session->get('userid'),
-            'lank' => filter_post('lank'),
+            'rank' => filter_post('rank'),
             'tag' => filter_post('tag'),
             'date' => filter_post('date'),
             'work' => filter_post('work'),
@@ -32,7 +32,17 @@ if ($mode == 'add') {
     }
 }
 
-if ($mode == 'up') {
+if ($mode == 'upTask') {
+    if ($session->get('token') == filter_post('token')) {
+        $tasks = [
+            'cd' => filter_post('cd'),
+            'idclass' => filter_post('idclass'),
+            'idvalue' => filter_post('idvalue'),
+        ];
+        $session->regenerate();
+        $session->set('token', session_id());
+        $task->upTask($tasks);
+    }
 }
 
 if ($mode == 'end') {
@@ -46,7 +56,7 @@ if ($mode == 'logout') {
 
 $arTask = array();
 foreach ($task->getAllTask($session->get('userid')) as $row) {
-    $arTask[$i] = ['cd' => $row['cd'], 'lank' => $row['lank'],
+    $arTask[$i] = ['cd' => $row['cd'], 'rank' => $row['rank'],
                  'tag' => $row['tag'], 'date' => $row['date'],
                  'sttime' => $row['sttime'], 'edtime' => $row['edtime'],
                  'work' => $row['work'], 'pid' =>  $row['pid'],
