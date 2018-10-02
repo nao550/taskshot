@@ -43,11 +43,11 @@ class Task
         return 0;
     }
 
-    public function endTask($cd)
+    public function endTask($taskcd)
     {
         $sql = "UPDATE tasks set compflg='1' where cd=:cd ;";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':cd', $cd, PDO::PARAM_STR);
+        $stmt->bindValue(':cd', $taskcd, PDO::PARAM_STR);
         $stmt->execute();
         return 0;
     }
