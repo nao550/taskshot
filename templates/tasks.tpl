@@ -11,11 +11,10 @@
           <table class="table">
             <thead>
               <tr>
-                <th class="col-md-1">flg</th>
                 <th class="col-md-1">rank</th>
                 <th class="col-md-2">tag</th>
                 <th class="col-md-2">date</th>
-                <th class="col-md-5">work</th>
+                <th class="col-md-6">work</th>
                 <th class="col-md-1"></th>
               </tr>
             </thead>
@@ -23,7 +22,6 @@
               <tr>
                 <form class="form-inline" name="addtask" action="#" method="POST">
                   <div class="form-group">
-                    <td></td>
                     <td><input type="text" class="form-control" name="rank" /></td>
                     <td><input type="text" class="form-control" name="tag" /></td>
                     <td><input type="text" class="form-control" name="date" /></td>
@@ -38,16 +36,13 @@
                 <tr>
                   <form class="form-inline" name="task" action="#" method="post">
                     <div class="form-group">
-                      <td>
-                        <input type="hidden" id="taskcd" name="taskcd" value="{$tasks.cd}" />
-                        <button class="btn" type="submit" name="mode" value="end">end</button>
-                      </td>
                       <td id="taskrank">{$tasks.rank}</td>
                       <td id="tasktag">{$tasks.tag}</td>
                       <td id="taskdate">{$tasks.date}</td>
                       <td id="taskwork">{$tasks.work}</td>
                       <td>
-
+                        <input type="hidden" id="taskcd" name="taskcd" value="{$tasks.cd}" />
+                        <button class="btn" type="submit" name="mode" value="end">end</button>
                       </td>
                     </div>
                   </form>
