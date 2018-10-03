@@ -22,7 +22,14 @@
               <tr>
                 <form class="form-inline" name="addtask" action="#" method="POST">
                   <div class="form-group">
-                    <td><input type="text" class="form-control" name="rank" /></td>
+                    <td>
+                      <select class="form-control" name="rank">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                      </select>
+                    </td>
                     <td><input type="text" class="form-control" name="tag" /></td>
                     <td><input type="text" class="form-control" name="date" /></td>
                     <td><input type="text" class="form-control" name="work" /></td>

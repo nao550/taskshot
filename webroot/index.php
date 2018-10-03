@@ -31,5 +31,4 @@ if (!(empty($session->get('token'))) && !(empty($session->get('userid')))) {
     header('location: '. $url . 'tasks.php');
 }
 
-echo 'phpst orm';
 $smarty->display('index.tpl');

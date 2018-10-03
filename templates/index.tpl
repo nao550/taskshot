@@ -22,7 +22,6 @@
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
           </form>
-          <p><a href="./signup.php" alt="signup">Sign Up</a></p>
         </div>
       </div>
     </div>
