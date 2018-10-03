@@ -32,3 +32,9 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+.sidemenu {
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: #ccc;
+}

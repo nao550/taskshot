@@ -65,7 +65,10 @@ foreach ($task->getAllTask($session->get('userid')) as $row) {
     $i++;
 }
 
+parse_str($_SERVER['QUERY_STRING'], $queryString);
+if (isset($queryString)) var_dump( $queryString );
 
+$smarty->assign('stdate', date("Y-m-d"));
 $smarty->assign('token', $session->get('token'));
 $smarty->assign('arTask', $arTask);
 $smarty->display('tasks.tpl');

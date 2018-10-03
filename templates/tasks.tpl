@@ -2,11 +2,24 @@
 
 <body>
   <div class="container-fluid">
+
     <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="header">
+      <div class="col-md-2">
+        <div class="sidenavi">
           <div class="pagetitle"><h1>TaskShot</h1></div>
+          <div class="sidemenu">
+            <dt>DateRange</dt>
+            <dd>all</dd>
+            <dd>run out</dd>
+            <dd><a href="./tasks.php?stdate={$stdate}">today</a></dd>
+            <dd>tomorrow</dd>
+            <dd>next 3 days</dd>
+            <dd>this week</dd>
+            <dd>this month</dd>
+          </div>
         </div>
+      </div>
+      <div class="col-md-10">
         <div class="main">
           <table class="table">
             <thead>
