@@ -52,7 +52,7 @@ class Task
         if (!(empty($query['eddate']))){
             $sql .= " and date <= :eddate ";
         }
-        
+
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
 

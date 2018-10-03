@@ -15,8 +15,12 @@
             <dd>tomorrow</dd>
             <dd>next 3 days</dd>
             <dd>this week</dd>
-            <dd>this month</dd>
+            <dd>this month
           </div>
+            <form class="form-inline" name="logout" action="#" method="post">
+              <input type="hidden" name="mode" value="logout" />
+              <input class="form-control" type="submit" value="logout" />
+            </form>
         </div>
       </div>
       <div class="col-md-10">
@@ -70,10 +74,6 @@
               {/foreach}
             </tbody>
           </table>
-          <form class="form-inline" name="logout" action="#" method="post">
-            <input type="hidden" name="mode" value="logout" />
-            <input class="form-control" type="submit" value="logout" />
-          </form>
         </div>
       </div>
     </div>
