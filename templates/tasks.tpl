@@ -9,9 +9,9 @@
           <div class="pagetitle"><h1>TaskShot</h1></div>
           <div class="sidemenu">
             <dt>DateRange</dt>
-            <dd>all</dd>
-            <dd>run out</dd>
-            <dd><a href="./tasks.php?stdate={$stdate}">today</a></dd>
+            <dd><a href="./tasks.php">all</a></dd>
+            <dd><a href="./tasks.php?eddate={$eddate}">run out</a></dd>
+            <dd><a href="./tasks.php?stdate={$stdate}&eddate={$eddate}">today</a></dd>
             <dd>tomorrow</dd>
             <dd>next 3 days</dd>
             <dd>this week</dd>

@@ -5,15 +5,13 @@ require_once '../lib/Smarty.php';
 
 $session = new ftech\Session;
 $config = new ftech\Config;
+$task = new ftech\Task;
 $session->start();
 $url = $config->getBaseUrl();
 
 if (empty($session->get('token')) || empty($session->get('userid'))) {
     header('location: '. $url . 'index.php');
 }
-
-$task = new ftech\Task;
-$i = 0;
 
 $mode = filter_post('mode');
 
@@ -54,21 +52,12 @@ if ($mode == 'logout') {
     header('location: '. $url . 'index.php');
 }
 
-$arTask = array();
-foreach ($task->getAllTask($session->get('userid')) as $row) {
-    $arTask[$i] = ['cd' => $row['cd'], 'rank' => $row['rank'],
-                 'tag' => $row['tag'], 'date' => $row['date'],
-                 'sttime' => $row['sttime'], 'edtime' => $row['edtime'],
-                 'work' => $row['work'], 'pid' =>  $row['pid'],
-                 'compflg' => $row['compflg'],
-    ];
-    $i++;
-}
-
 parse_str($_SERVER['QUERY_STRING'], $queryString);
-if (isset($queryString)) var_dump( $queryString );
+
+$arTask = $task->getTask( $session->get('userid'), $queryString );
 
 $smarty->assign('stdate', date("Y-m-d"));
+$smarty->assign('eddate', date("Y-m-d"));
 $smarty->assign('token', $session->get('token'));
 $smarty->assign('arTask', $arTask);
 $smarty->display('tasks.tpl');

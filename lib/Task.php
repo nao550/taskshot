@@ -23,7 +23,49 @@ class Task
         $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
         $stmt->execute();
 
-        return $stmt;
+        return ($stmt->fetchAll());
+    }
+
+    /* Task を検索して、arrey で返す
+     * @param string $user_id
+     * @param string $queryString
+     * @return array
+     */
+    /**
+     * @param $user_id
+     * @param $queryString
+     * @return array
+     */
+    public function getTask($userid, $queryString)
+    {
+        $sql = 'select * from tasks where compflg = false and userid = :userid';
+
+        $args = array(
+            'stdate' => FILTER_SANITIZE_ENCODED,
+            'eddate' => FILTER_SANITIZE_ENCODED,
+        );
+        $query = filter_var_array( $queryString, $args );
+
+        if (!(empty($query['stdate']))){
+            $sql .= " and date >= :stdate ";
+        }
+        if (!(empty($query['eddate']))){
+            $sql .= " and date <= :eddate ";
+        }
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
+
+        if (!(empty($query['stdate']))){
+            $stmt->bindValue(':stdate', $query['stdate'], PDO::PARAM_STR);
+        }
+        if (!(empty($query['eddate']))){
+            $stmt->bindValue(':eddate', $query['eddate'], PDO::PARAM_STR);
+        }
+
+        $stmt->execute();
+
+        return ($stmt->fetchAll());
     }
 
     public function addTask($tasks)
