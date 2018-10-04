@@ -80,7 +80,7 @@
                 <td class="editable taskdate">{$tasks.date}</td>
                 <td class="editable taskwork">{$tasks.work}</td>
                 <td class="taskcd"><span hidden>{$tasks.cd}</span>
-                  <button class="btn" name="deltask" onClick="delTask({$tasks.cd})">End</button>
+                  <button class="btn" name="endTask" onClick="endTask({$tasks.cd})">End</button>
                 </td>
               </tr>
             {/foreach}

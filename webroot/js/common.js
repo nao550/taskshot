@@ -60,3 +60,11 @@ function logout(){
     }
 }
 
+function endTask(taskcd){
+    var $form = $('<form>', {'action':'#', 'method':'POST'});
+    $form.append($('<input>', {'type':'hidden', 'name':'mode', 'value':'endTask'}));
+    $form.append($('<input>', {'type':'hidden', 'name':'taskcd','value': taskcd}));
+    $form.append($('</form>'));
+    $form.appendTo(document.body);
+    $form.submit();
+}

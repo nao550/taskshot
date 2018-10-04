@@ -44,7 +44,7 @@ if ($mode == 'upTask') {
     }
 }
 
-if ($mode == 'end') {
+if ($mode == 'endTask') {
     $task->endTask(filter_post('taskcd'));
 }
 
