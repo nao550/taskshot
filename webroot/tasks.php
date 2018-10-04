@@ -12,9 +12,10 @@ $url = $config->getBaseUrl();
 if (empty($session->get('token')) || empty($session->get('userid'))) {
     header('location: '. $url . 'index.php');
 }
+if ($_SERVER['SERVER_NAME'] == 'www.kyo-to.net') var_dump($_POST);
 
 $mode = filter_post('mode');
-var_dump($mode);
+
 if ($mode == 'add') {
     if ($session->get('token') == filter_post('token')) {
         $tasks = [

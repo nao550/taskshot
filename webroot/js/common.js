@@ -1,33 +1,18 @@
-$(function(){
-    var taskid = [$('#taskcd').val(), $('#token').val()];
-    $('#taskrank').click(edit_toggle(taskid));
-});
-
-$(function(){
-    var taskid = [$('#taskcd').val(), $('#token').val()];
-    $('#tasktag').click(edit_toggle(taskid));
-});
-
-$(function(){
-    var taskid = [$('#taskcd').val(), $('#token').val()];
-    $('#taskdate').click(edit_toggle(taskid));
-});
-
 $(function() {
-    var taskid = [$('#taskcd').val(), $('#token').val()];
-    $('#taskwork').click(edit_toggle(taskid));
+    $(".editable").click(edit_toggle());
 });
 
-function edit_toggle(taskid){
+function edit_toggle(){
     var edit_flag = false;
     return function(){
         if ( edit_flag ) return;
+
+        var taskid = [$(this).siblings('.taskcd').children('span').text(), $('#token').val()];
         var $input = $("<input>").attr("type","text").val($(this).text());
+
         $(this).html($input);
-
         $("input",this).focus().blur(function(){
-            save(this, taskid);
-
+            save(this,taskid);
             $(this).after($(this).val()).unbind().remove();
             edit_flag=false;
         });
@@ -36,8 +21,21 @@ function edit_toggle(taskid){
 }
 
 function save(elm,taskid) {
-    chString = $(elm).val();
-    chParent = elm.parentNode.id;
+    var chString = $(elm).val();
+    var chParentStr = elm.parentNode.className;
+
+    if (chParentStr.indexOf('taskrank') !== -1){
+        chParent = 'taskrank';
+    }
+    if (chParentStr.indexOf('tasktag') !== -1){
+        chParent = 'tasktag';
+    }
+    if (chParentStr.indexOf('taskdate') !== -1){
+        chParent = 'taskdate';
+    }
+    if (chParentStr.indexOf('taskwork') !== -1){
+        chParent = 'taskwork';
+    }
 
     //alert("「"+chString+chNode+"」を保存しました。");
     // submit で保存する処理
@@ -60,5 +58,5 @@ function logout(){
         $form.appendTo(document.body);
         $form.submit();
     }
-
 }
+

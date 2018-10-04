@@ -25,21 +25,30 @@
 .form-signin input[type="email"] {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 .form-signin input[type="password"] {
     margin-bottom: 10px;
-    border-top-left-radius: 0;
+    border-top-right-radius: 0;
     border-top-right-radius: 0;
 }
 
-.sidenavi {
-    border-right-width: 1px;
-    border-right-style: solid;
-    border-right-color: #ccc;
+.main {
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-left-color: #ccc;
 }
-.sidemenu {
-    height: 100%
+
+.tasktable {
+
+}
+
+.sidenavi {
+
+}
+
+#sidemenu {
+
 }
 
 .sidemenu dt {
@@ -50,3 +59,4 @@
 .sidemenu dd {
     margin-bottom: 3px;
 }
+
