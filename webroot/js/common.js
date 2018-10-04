@@ -51,3 +51,14 @@ function save(elm,taskid) {
     $form.appendTo(document.body);
     $form.submit();
 }
+
+function logout(){
+    if (window.confirm('Do you want logout?')) {
+        var $form = $('<form>', {'action':'#', 'method':'POST'});
+        $form.append($('<input>', {'type':'hidden', 'name':'mode', 'value':'logout'}));
+        $form.append($('</form>'));
+        $form.appendTo(document.body);
+        $form.submit();
+    }
+
+}

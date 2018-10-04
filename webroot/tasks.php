@@ -14,7 +14,7 @@ if (empty($session->get('token')) || empty($session->get('userid'))) {
 }
 
 $mode = filter_post('mode');
-
+var_dump($mode);
 if ($mode == 'add') {
     if ($session->get('token') == filter_post('token')) {
         $tasks = [
