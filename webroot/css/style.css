@@ -33,7 +33,7 @@
     border-top-right-radius: 0;
 }
 
-.main {
+.tasklist {
     border-left-width: 1px;
     border-left-style: solid;
     border-left-color: #ccc;
@@ -59,4 +59,3 @@
 .sidemenu dd {
     margin-bottom: 3px;
 }
-

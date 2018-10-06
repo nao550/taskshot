@@ -40,7 +40,7 @@
         </div>
       </div>
 
-      <div class="col-md-10 main">
+      <div class="col-md-10 tasklist">
         <table class="table table-hover" id="tasktable">
           <thead>
             <tr>
