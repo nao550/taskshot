@@ -65,11 +65,11 @@
                   </div>
                 </td>
                 <td><div class="form-group"><input type="text" class="form-control" name="tag" /></div></td>
-                <td><div class="form-group"><input type="text" class="form-control" name="date" /></div></td>
+                <td><div class="form-group"><input type="text" class="form-control" name="date" id="datepicker" /></div></td>
                 <td><div class="form-group"><input type="text" class="form-control" name="work" /></div></td>
                 <td>
                   <input type="hidden" id="token" name="token" value="{$token}" />
-                  <button class="btn" type="submit" name="mode" value="add">add</button>
+                  <button class="btn btn-default" type="submit" name="mode" value="add">add</button>
                 </td>
               </form>
             </tr>
@@ -80,7 +80,7 @@
                 <td class="editable taskdate">{$tasks.date}</td>
                 <td class="editable taskwork">{$tasks.work}</td>
                 <td class="taskcd"><span hidden>{$tasks.cd}</span>
-                  <button class="btn" name="endTask" onClick="endTask({$tasks.cd})">End</button>
+                  <button class="btn btn-default" name="endTask" onClick="endTask({$tasks.cd})">End</button>
                 </td>
               </tr>
             {/foreach}

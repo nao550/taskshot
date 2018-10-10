@@ -1,3 +1,10 @@
+// datepicker
+$(function () {
+    $('#datepicker').datepicker({
+        dateFormat: 'yy-mm-dd'
+    });
+});
+
 $(function() {
     $(".editable").click(edit_toggle());
 });
@@ -68,3 +75,4 @@ function endTask(taskcd){
     $form.appendTo(document.body);
     $form.submit();
 }
+
