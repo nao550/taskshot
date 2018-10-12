@@ -1,30 +1,55 @@
 {include file='header.tpl'}
-
+  <link rel="stylesheet" type="text/css" href="./css/slidemenu.css" />
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="./js/tasks.js"></script>
+</head>
 <body>
-  <nav class="navbar navbar-default navbar-top">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">TaskShot</a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Settings</a></li>
-          <li><a href="#">Profile</a></li>
-          <li><a href="#" onClick="logout()">Logout</a></li>
-        </ul>
-        <form class="navbar-form navbar-right">
-          <input type="text" class="form-control" placeholder="Search...">
-        </form>
-      </div>
-    </div>
-  </nav>
+  <div class="nav-side-menu">
+    <div class="brand">Task Shot</div>
+    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
+    <div class="menu-list">
+
+      <ul id="menu-content" class="menu-content collapse out">
+        <li>
+          <a href="./tasks.php"><i class="fa fa-calendar fa-lg fa-fw sidebar-icon"></i> All</a>
+        </li>
+
+        <li>
+          <a href="./tasks.php?eddate={$eddate}">
+            <i class="fa fa-calendar-times-o fa-lg fa-fw sidebar-icon"></i> Run Out
+          </a>
+        </li>
+
+        <li>
+          <a href="./tasks.php?stdate={$stdate}&eddate={$eddate}">
+            <i class="fa fa-bar-chart fa-lg fa-fw sidebar-icon"></i> Today
+          </a>
+        </li>
+
+        <li  data-toggle="collapse" data-target="#tagcloud" class="collapsed">
+          <a href="#"><i class="fa fa-puzzle-piece fa-lg fa-fw sidebar-icon"></i> Tags <span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="tagcloud">
+          <li><a href="#"><i class="fa fa-angle-double-right"></i> Devices</a></li>
+          <li><a href="#"><i class="fa fa-angle-double-right"></i> Groups</a></li>
+          <li><a href="#"><i class="fa fa-angle-double-right"></i> SIM Cards</a></li>
+          <li><a href="#"><i class="fa fa-angle-double-right"></i> Users</a></li>
+        </ul>
+
+        <li  data-toggle="collapse" data-target="#settings" class="collapsed">
+          <a href="#"><i class="fa fa-sliders fa-lg fa-fw sidebar-icon"></i> Settings <span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="settings">
+          <li><a href="#"><i class="fa fa-angle-double-right"></i> Profile</a></li>
+          <li><a href="#"><i class="fa fa-angle-double-right"></i> Settings</a></li>
+          <li><a href="#"><i class="fa fa-angle-double-right"></i> Logout</a></li>
+        </ul>
+
+      </ul>
+    </div>
+  </div>
+<!--
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-2 sidenavi">
@@ -39,8 +64,11 @@
           <dd>this month
         </div>
       </div>
-
-      <div class="col-md-10 tasklist">
+-->
+  <div class="main">
+    <div class="container-fluid">
+      <div class="row"
+       <div class="col-md-12 tasklist">
         <table class="table table-hover" id="tasktable">
           <thead>
             <tr>
@@ -88,6 +116,7 @@
         </table>
       </div>
     </div>
-  </div>
+      </div>
+    </div>
 
 {include file='footer.tpl'}

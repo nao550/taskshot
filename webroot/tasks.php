@@ -12,7 +12,7 @@ $url = $config->getBaseUrl();
 if (empty($session->get('token')) || empty($session->get('userid'))) {
     header('location: '. $url . 'index.php');
 }
-if ($_SERVER['SERVER_NAME'] == 'www.kyo-to.net') var_dump($_POST);
+// if ($_SERVER['SERVER_NAME'] == 'www.kyo-to.net') var_dump($_POST);
 
 $mode = filter_post('mode');
 

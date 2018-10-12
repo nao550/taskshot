@@ -1,7 +1,7 @@
 // datepicker
 $(function () {
     $('#datepicker').datepicker({
-        dateFormat: 'yy-mm-dd',
+        dateFormat: 'yy-mm-dd'
     });
 });
 
@@ -75,4 +75,5 @@ function endTask(taskcd){
     $form.appendTo(document.body);
     $form.submit();
 }
+
 
