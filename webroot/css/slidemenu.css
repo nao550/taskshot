@@ -9,7 +9,7 @@ body {
     background-color: #ebedef;
 }
 .main {
-    margin-left: 220px;
+    margin-left: 170px;
     padding: 15px;
 }
 .nav-side-menu {
@@ -17,7 +17,7 @@ body {
     background-color: #2e353d;
     position: fixed;
     top: 0px;
-    width: 220px;
+    width: 170px;
     height: 100%;
     color: #e1ffff;
 }

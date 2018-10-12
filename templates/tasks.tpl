@@ -82,14 +82,22 @@
     <div class="container-fluid">
       <div class="row"
        <div class="col-md-12 tasklist">
-        <table class="table table-hover" id="tasktable">
+        <table class="table table-condensed" id="tasktable">
           <thead>
             <tr>
+                <th>rank</th>
+                <th>tag</th>
+                <th>date</th>
+                <th>work</th>
+                <th></th>
+
+                <!--
               <th class="col-md-1">rank</th>
               <th class="col-md-2">tag</th>
               <th class="col-md-2">date</th>
               <th class="col-md-6">work</th>
               <th class="col-md-1"></th>
+              -->
             </tr>
           </thead>
           <tbody>
