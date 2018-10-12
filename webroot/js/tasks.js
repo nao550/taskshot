@@ -76,4 +76,7 @@ function endTask(taskcd){
     $form.submit();
 }
 
-
+// DateRange toggle.
+$('#DateRangeCollapse').click(function() {
+    $('#daterange').collapse('toggle');
+});

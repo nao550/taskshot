@@ -11,21 +11,34 @@
     <div class="menu-list">
 
       <ul id="menu-content" class="menu-content collapse out">
+          <!--
         <li>
           <a href="./tasks.php"><i class="fa fa-calendar fa-lg fa-fw sidebar-icon"></i> All</a>
         </li>
 
         <li>
           <a href="./tasks.php?eddate={$eddate}">
-            <i class="fa fa-calendar-times-o fa-lg fa-fw sidebar-icon"></i> Run Out
+            <i class="fa fa-calendar-minus-o fa-lg fa-fw sidebar-icon"></i> Run Out
           </a>
         </li>
 
         <li>
           <a href="./tasks.php?stdate={$stdate}&eddate={$eddate}">
-            <i class="fa fa-bar-chart fa-lg fa-fw sidebar-icon"></i> Today
+            <i class="fa fa-calendar-o fa-lg fa-fw sidebar-icon"></i> Today
           </a>
         </li>
+-->
+          <li  data-toggle="collapse" data-target="#daterange" class="collapsed" id="DateRangeCollapse" aria-expanded="true">
+              <a href="#"><i class="fa fa-calendar fa-lg fa-fw sidebar-icon"></i> DateRange <span class="arrow"></span></a>
+          </li>
+          <ul class="sub-menu collapse in" id="daterange">
+              <li><a href="./tasks.php"><i class="fa fa-angle-double-right"></i> All</a></li>
+              <li><a href="./tasks.php?eddate={$eddate}"><i class="fa fa-angle-double-right"></i> RunOut</a></li>
+              <li><a href="./tasks.php?stdate={$stdate}&eddate={$eddate}"><i class="fa fa-angle-double-right"></i> Today</a></li>
+              <li><a href="#"><i class="fa fa-angle-double-right"></i> Next 3 days</a></li>
+              <li><a href="#"><i class="fa fa-angle-double-right"></i> This Week</a></li>
+              <li><a href="#"><i class="fa fa-angle-double-right"></i> This Month</a></li>
+          </ul>
 
         <li  data-toggle="collapse" data-target="#tagcloud" class="collapsed">
           <a href="#"><i class="fa fa-puzzle-piece fa-lg fa-fw sidebar-icon"></i> Tags <span class="arrow"></span></a>
