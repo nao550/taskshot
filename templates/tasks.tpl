@@ -114,7 +114,7 @@
                   </div>
                 </td>
                 <td><div class="form-group"><input type="text" class="form-control" name="tag" /></div></td>
-                <td><div class="form-group"><input type="text" class="form-control" name="date" id="datepicker" /></div></td>
+                <td><div class="form-group"><input type="text" class="form-control" name="date" id="datepicker" autocomplete="off" /></div></td>
                 <td><div class="form-group"><input type="text" class="form-control" name="work" /></div></td>
                 <td>
                   <input type="hidden" id="token" name="token" value="{$token}" />
