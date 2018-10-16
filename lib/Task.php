@@ -16,6 +16,11 @@ class Task
         $this->pdo = $config->getPdo();
     }
 
+    /*
+     * userid の compflg が false をすべて取り出し
+     * @param string $userid
+     * @return array all task
+     */
     public function getAllTask( $userid )
     {
         $sql = 'select * from tasks where compflg = false and userid = :userid';
@@ -26,13 +31,9 @@ class Task
         return ($stmt->fetchAll());
     }
 
-    /* Task を検索して、arrey で返す
-     * @param string $user_id
-     * @param string $queryString
-     * @return array
-     */
-    /**
-     * @param $user_id
+    /*
+     *  Task を検索して、arrey で返す
+     * @param $userid
      * @param $queryString
      * @return array
      */
@@ -68,6 +69,11 @@ class Task
         return ($stmt->fetchAll());
     }
 
+    /*
+     * task を一個追加
+     * @param array $tasks
+     * @return boolen
+     */
     public function addTask($tasks)
     {
         $sql = 'INSERT INTO tasks (userid, rank, tag, date, work, '.
@@ -85,9 +91,14 @@ class Task
         return 0;
     }
 
+    /*
+     * task に終了フラグを設定
+     * @param int $taskcd
+     * @return boolen
+     */
     public function endTask($taskcd)
     {
-        $sql = "UPDATE tasks set compflg='1' where cd=:cd ;";
+        $sql = "UPDATE tasks set compflg='1', eddate = NOW() where cd=:cd ;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':cd', $taskcd, PDO::PARAM_STR);
         $stmt->execute();
