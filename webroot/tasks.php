@@ -45,7 +45,10 @@ if ($mode == 'upTask') {
 }
 
 if ($mode == 'endTask') {
-    $task->endTask(filter_post('taskcd'));
+    $taskcd = filter_post('taskcd');
+    if($task->endTask($taskcd)){
+        $endtaskcd = $taskcd;
+    }
 }
 
 if ($mode == 'logout') {
