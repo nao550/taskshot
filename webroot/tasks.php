@@ -9,10 +9,11 @@ $task = new ftech\Task;
 $session->start();
 $url = $config->getBaseUrl();
 
+if ($_SERVER['SERVER_NAME'] == 'www.kyo-to.net') var_dump($_POST);
+
 if (empty($session->get('token')) || empty($session->get('userid'))) {
     header('location: '. $url . 'index.php');
 }
-// if ($_SERVER['SERVER_NAME'] == 'www.kyo-to.net') var_dump($_POST);
 
 $mode = filter_post('mode');
 
@@ -60,8 +61,31 @@ parse_str($_SERVER['QUERY_STRING'], $queryString);
 
 $arTask = $task->getTask( $session->get('userid'), $queryString );
 
-$smarty->assign('stdate', date("Y-m-d"));
-$smarty->assign('eddate', date("Y-m-d"));
+$arDayrange = [
+    'all' => 'all',
+    'runout' => [
+            'ed' => date('Y-m-d', strtotime("-1 days"))
+    ],
+    'today' => [
+        'st' => date('Y-m-d'),
+        'ed' => date('Y-m-d')
+    ],
+    'next3day' => [
+        'st' => date('Y-m-d'),
+        'ed' => date('Y-m-d', strtotime("+3 days")),
+    ],
+    'thisweek' => [
+        'st' => date('Y-m-d'),
+        'ed' => date('Y-m-d', strtotime("+7 days")),
+
+    ],
+    'thismonth' => [
+        'st' => date('Y-m-d'),
+        'ed' => date('Y-m-d', strtotime("+30 days")),
+    ],
+];
+
+$smarty->assign('arDayrange', $arDayrange);
 $smarty->assign('token', $session->get('token'));
 $smarty->assign('arTask', $arTask);
 $smarty->display('tasks.tpl');
