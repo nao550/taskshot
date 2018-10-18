@@ -25,7 +25,7 @@ nbproject/* # NetBeans
 .vscode # Visual Studio Code
 .sass-cache/ # Sass preprocessor
 # Original ignore files.
-######################## 
+########################
 config.php
+Config.php
 templates_c/*
-
