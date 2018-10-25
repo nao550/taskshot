@@ -55,7 +55,7 @@
             <tr>
                 <th>Rank</th>
                 <th>Tag</th>
-                <th>Date</th>
+                <th>EndDate</th>
                 <th>Work</th>
                 <th></th>
 
@@ -69,35 +69,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <form class="form-inline" name="addtask" action="#" method="POST">
-                <td>
-                  <div class="form-group">
-                    <select class="form-control" name="rank" id="rank">
-                      <option value="0">0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                    </select>
-                  </div>
-                </td>
-                <td><div class="form-group"><input type="text" class="form-control" name="tag" /></div></td>
-                <td><div class="form-group"><input type="text" class="form-control" name="date" id="datepicker" autocomplete="off" /></div></td>
-                <td><div class="form-group"><input type="text" class="form-control" name="work" /></div></td>
-                <td>
-                  <input type="hidden" id="token" name="token" value="{$token}" />
-                  <button class="btn btn-default" type="submit" name="mode" value="add">add</button>
-                </td>
-              </form>
-            </tr>
             {foreach item=tasks from=$arTask}
               <tr>
-                <td class="editable taskrank">{$tasks.rank}</td>
-                <td class="editable tasktag">{$tasks.tag}</td>
-                <td class="editable taskdate">{$tasks.date}</td>
-                <td class="editable taskwork">{$tasks.work}</td>
-                <td class="taskcd"><span hidden>{$tasks.cd}</span>
-                  <button class="btn btn-default" name="endTask" onClick="endTask({$tasks.cd})">End</button>
+                <td class="taskrank">{$tasks.rank}</td>
+                <td class="tasktag">{$tasks.tag}</td>
+                <td class="taskdate">{$tasks.date}</td>
+                <td class="taskwork">{$tasks.work}</td>
+                <td class="taskcd">
+                  <form name="reverttask" action="#" method="post" style="margin-bottom: 0px";>
+                    <input type="hidden" name="taskcd" value="{$tasks.cd}" />
+                    <input type="hidden" id="token" name="token" value="{$token}" />
+                    <input type="hidden" name="mode" value="RevertTask" />
+                    <button type="submit" class="btn btn-default" name="RevertTask">Revert</button>
+                  </form>
                 </td>
               </tr>
             {/foreach}
@@ -106,5 +90,5 @@
       </div>
     </div>
   </div>
-  <script src="./js/tasks.js"></script>
+  <script src="./js/endtasks.js"></script>
 {include file='footer.tpl'}

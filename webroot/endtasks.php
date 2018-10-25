@@ -17,38 +17,13 @@ if (empty($session->get('token')) || empty($session->get('userid'))) {
 
 $mode = filter_post('mode');
 
-if ($mode == 'add') {
+if ($mode == 'RevertTask') {
     if ($session->get('token') == filter_post('token')) {
-        $tasks = [
-            'userid' => $session->get('userid'),
-            'rank' => filter_post('rank'),
-            'tag' => filter_post('tag'),
-            'date' => filter_post('date'),
-            'work' => filter_post('work'),
-            ];
+        $taskcd = filter_post('taskcd');
+        $task->RevertTask($taskcd);
         $session->regenerate();
         $session->set('token', session_id());
-        $task->addTask($tasks);
-    }
-}
-
-if ($mode == 'upTask') {
-    if ($session->get('token') == filter_post('token')) {
-        $tasks = [
-            'cd' => filter_post('cd'),
-            'idclass' => filter_post('idclass'),
-            'idvalue' => filter_post('idvalue'),
-        ];
-        $session->regenerate();
-        $session->set('token', session_id());
-        $task->upTask($tasks);
-    }
-}
-
-if ($mode == 'endTask') {
-    $taskcd = filter_post('taskcd');
-    if($task->endTask($taskcd)){
-        $endtaskcd = $taskcd;
+        $task->RevertTask($taskcd);
     }
 }
 
@@ -89,4 +64,4 @@ $arDayrange = [
 $smarty->assign('arDayrange', $arDayrange);
 $smarty->assign('token', $session->get('token'));
 $smarty->assign('arTask', $arTask);
-$smarty->display('tasks.tpl');
+$smarty->display('endtasks.tpl');

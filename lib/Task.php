@@ -39,20 +39,30 @@ class Task
      */
     public function getTask($userid, $queryString)
     {
-        $sql = 'select * from tasks where compflg = false and userid = :userid';
+        $sql = 'select * from tasks where userid = :userid';
 
         $args = array(
+            'mode' => FILTER_SANITIZE_ENCODED,
             'stdate' => FILTER_SANITIZE_ENCODED,
             'eddate' => FILTER_SANITIZE_ENCODED,
         );
         $query = filter_var_array( $queryString, $args );
 
+        // EndTask の抽出
+        if ( $query['mode'] == 'endtasks') {
+            $sql .= " AND compflg = true ";
+        } else {
+            $sql .= " AND compflg = false ";
+        }
+
+        // 日付範囲の設定
         if (!(empty($query['stdate']))){
             $sql .= " and date >= :stdate ";
         }
         if (!(empty($query['eddate']))){
             $sql .= " and date <= :eddate ";
         }
+
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
@@ -99,6 +109,21 @@ class Task
     public function endTask($taskcd)
     {
         $sql = "UPDATE tasks set compflg='1', eddate = NOW() where cd=:cd ;";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':cd', $taskcd, PDO::PARAM_STR);
+        $stmt->execute();
+        return 0;
+    }
+
+
+    /*
+     * task に終了フラグを設定
+     * @param int $taskcd
+     * @return boolen
+     */
+    public function RevertTask($taskcd)
+    {
+        $sql = "UPDATE tasks set compflg='0', eddate = '' where cd=:cd ;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':cd', $taskcd, PDO::PARAM_STR);
         $stmt->execute();
