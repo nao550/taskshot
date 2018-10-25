@@ -1,7 +1,6 @@
 {include file='header.tpl'}
   <link rel="stylesheet" type="text/css" href="./css/slidemenu.css" />
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-  <script src="./js/tasks.js"></script>
 </head>
 <body>
   <div class="nav-side-menu">
@@ -11,23 +10,6 @@
     <div class="menu-list">
 
       <ul id="menu-content" class="menu-content collapse out">
-          <!--
-        <li>
-          <a href="./tasks.php"><i class="fa fa-calendar fa-lg fa-fw sidebar-icon"></i> All</a>
-        </li>
-
-        <li>
-          <a href="./tasks.php?eddate={$eddate}">
-            <i class="fa fa-calendar-minus-o fa-lg fa-fw sidebar-icon"></i> Run Out
-          </a>
-        </li>
-
-        <li>
-          <a href="./tasks.php?stdate={$stdate}&eddate={$eddate}">
-            <i class="fa fa-calendar-o fa-lg fa-fw sidebar-icon"></i> Today
-          </a>
-        </li>
--->
           <li  data-toggle="collapse" data-target="#daterange" class="collapsed" id="DateRangeCollapse" aria-expanded="true">
               <a href="#"><i class="fa fa-calendar fa-lg fa-fw sidebar-icon"></i> DateRange <span class="arrow"></span></a>
           </li>
@@ -62,22 +44,7 @@
       </ul>
     </div>
   </div>
-<!--
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-2 sidenavi">
-        <div id="sidemenu">
-          <dt>DateRange</dt>
-          <dd><a href="./tasks.php">all</a></dd>
-          <dd><a href="./tasks.php?eddate={$eddate}">run out</a></dd>
-          <dd><a href="./tasks.php?stdate={$stdate}&eddate={$eddate}">today</a></dd>
-          <dd>tomorrow</dd>
-          <dd>next 3 days</dd>
-          <dd>this week</dd>
-          <dd>this month
-        </div>
-      </div>
--->
+
   <div class="main">
     <div class="container-fluid">
       <div class="row"
@@ -105,7 +72,7 @@
               <form class="form-inline" name="addtask" action="#" method="POST">
                 <td>
                   <div class="form-group">
-                    <select class="form-control" name="rank">
+                    <select class="form-control" name="rank" id="rank">
                       <option value="0">0</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -137,7 +104,6 @@
         </table>
       </div>
     </div>
-      </div>
-    </div>
-
+  </div>
+  <script src="./js/tasks.js"></script>
 {include file='footer.tpl'}

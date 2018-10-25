@@ -80,3 +80,5 @@ function endTask(taskcd){
 $('#DateRangeCollapse').click(function() {
     $('#daterange').collapse('toggle');
 });
+
+$('#rank').focus();
