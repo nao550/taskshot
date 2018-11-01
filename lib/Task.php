@@ -88,7 +88,6 @@ class Task
     {
         $chkdate = new Querystr;
         $date = $chkdate->chkDate($tasks['date']);
-        echo 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaa:'.$tasks['date'].'-'.$date;
 
         $sql = 'INSERT INTO tasks (userid, rank, tag, date, work, '.
            'compflg, regdate ) '.
