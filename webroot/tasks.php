@@ -9,8 +9,6 @@ $task = new ftech\Task;
 $session->start();
 $url = $config->getBaseUrl();
 
-if ($_SERVER['SERVER_NAME'] == 'www.kyo-to.net') var_dump($_POST);
-
 if (empty($session->get('token')) || empty($session->get('userid'))) {
     header('location: '. $url . 'index.php');
 }
@@ -90,3 +88,4 @@ $smarty->assign('arDayrange', $arDayrange);
 $smarty->assign('token', $session->get('token'));
 $smarty->assign('arTask', $arTask);
 $smarty->display('tasks.tpl');
+if ($_SERVER['SERVER_NAME'] == 'www.kyo-to.net') var_dump($_POST);

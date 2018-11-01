@@ -86,6 +86,10 @@ class Task
      */
     public function addTask($tasks)
     {
+        $chkdate = new Querystr;
+        $date = $chkdate->chkDate($tasks['date']);
+        echo 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaa:'.$tasks['date'].'-'.$date;
+
         $sql = 'INSERT INTO tasks (userid, rank, tag, date, work, '.
            'compflg, regdate ) '.
            'VALUE (:userid, :rank, :tag, :date, :work, 0, NOW());';
@@ -94,7 +98,7 @@ class Task
         $stmt->bindValue(':userid', $tasks['userid'], PDO::PARAM_STR);
         $stmt->bindValue(':rank', $tasks['rank'], PDO::PARAM_STR);
         $stmt->bindValue(':tag', $tasks['tag'], PDO::PARAM_STR);
-        $stmt->bindValue(':date', $tasks['date'], PDO::PARAM_STR);
+        $stmt->bindValue(':date', $date, PDO::PARAM_STR);
         $stmt->bindValue(':work', $tasks['work'], PDO::PARAM_STR);
         $stmt->execute();
 
