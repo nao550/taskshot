@@ -4,7 +4,7 @@
 </head>
 <body>
   <div class="nav-side-menu">
-    <div class="brand">Task Shot</div>
+    <div class="brand"> <a href"./task.php">Task Shot</a></div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
     <div class="menu-list">
@@ -77,7 +77,7 @@
                       <option value="0">0</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
-                      <option value="3">3</option>
+                      <option value="3">3√</option>
                     </select>
                   </div>
                 </td>
