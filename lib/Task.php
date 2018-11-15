@@ -86,6 +86,28 @@ class Task
      */
     public function addTask($tasks)
     {
+        $artasks = explode(' ', $tasks['linetask']);
+        foreach ($artasks as $task) {
+            // set rank
+            if (substr($task, 0, 1) === '!'){
+                $tasks['rank'] = substr($task, 1);
+            }
+            //  set tag
+            elseif (substr($task, 0, 1) === '#'){
+                $tasks['tag'] = substr($task, 1);
+            }
+            // set area
+            elseif (substr($task, 0, 1) === '@'){
+                $tasks['area'] = substr($task, 1);
+            }
+            // set date
+            elseif (substr($task, 0, 1) === '^'){
+                $tasks['date'] = substr($task, 1);
+            } else {
+                $tasks['work'] = $task;
+            }
+        }
+
         $chkdate = new Querystr;
         $date = $chkdate->chkDate($tasks['date']);
 
@@ -133,6 +155,11 @@ class Task
         return 0;
     }
 
+    /*
+     * タスクのアップデート
+     * @param array
+     * @return boolean
+     */
     public function upTask($tasks){
         $sql = "UPDATE tasks set ";
 

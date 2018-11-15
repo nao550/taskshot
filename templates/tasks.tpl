@@ -11,44 +11,19 @@
         <table class="table table-condensed" id="tasktable">
           <thead>
             <tr>
-                <th>Rank</th>
-                <th>Tag</th>
-                <th>Date</th>
-                <th>Work</th>
-                <th></th>
-
-                <!--
-              <th class="col-md-1">rank</th>
-              <th class="col-md-2">tag</th>
-              <th class="col-md-2">date</th>
-              <th class="col-md-6">work</th>
-              <th class="col-md-1"></th>
-              -->
+              <th>Rank</th>
+              <th>Tag</th>
+              <th>Date</th>
+              <th>Work</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <form class="form-inline" name="addtask" action="#" method="POST">
-                <!--
-                <td>
-                  <div class="form-group">
-                    <select class="form-control" name="rank" id="rank">
-                      <option value="0">0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3√</option>
-                    </select>
-                  </div>
-                </td>
-                <td><div class="form-group"><input type="text" class="form-control" name="tag" /></div></td>
-                <td><div class="form-group"><input type="text" class="form-control" name="date" id="datepicker" autocomplete="off" /></div></td>
-                <td><div class="form-group"><input type="text" class="form-control" name="work" /></div>
-                </td>
-                -->
-
                 <td colspan="4">
                   <div class="form-group">
-                    <input type="text" class="form-control" name="inputtask">
+                    <input type="text" class="form-control" name="linetask">
                   </div>
                 </td>
 
