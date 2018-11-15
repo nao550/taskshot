@@ -29,7 +29,6 @@
           <tbody>
             <tr>
               <form class="form-inline" name="addtask" action="#" method="POST">
-                <!--
                 <td>
                   <div class="form-group">
                     <select class="form-control" name="rank" id="rank">
@@ -44,14 +43,6 @@
                 <td><div class="form-group"><input type="text" class="form-control" name="date" id="datepicker" autocomplete="off" /></div></td>
                 <td><div class="form-group"><input type="text" class="form-control" name="work" /></div>
                 </td>
-                -->
-
-                <td colspan="4">
-                  <div class="form-group">
-                    <input type="text" class="form-control" name="inputtask">
-                  </div>
-                </td>
-
                 <td>
                   <input type="hidden" id="token" name="token" value="{$token}" />
                   <button class="btn btn-default" type="submit" name="mode" value="add">add</button>
