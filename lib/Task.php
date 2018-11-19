@@ -86,15 +86,19 @@ class Task
      */
     public function addTask($tasks)
     {
-        $chkdate = new Querystr;
-        $date = $chkdate->chkDate($tasks['date']);
+        $userid = $tasks['userid'];
+
+        $qstr = new Querystr ;
+        $tasks = $qstr->separateLineTask($tasks['linetask']);
+
+        $date = $qstr->chkDate($tasks['date']);
 
         $sql = 'INSERT INTO tasks (userid, rank, tag, date, work, '.
            'compflg, regdate ) '.
            'VALUE (:userid, :rank, :tag, :date, :work, 0, NOW());';
 
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':userid', $tasks['userid'], PDO::PARAM_STR);
+        $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
         $stmt->bindValue(':rank', $tasks['rank'], PDO::PARAM_STR);
         $stmt->bindValue(':tag', $tasks['tag'], PDO::PARAM_STR);
         $stmt->bindValue(':date', $date, PDO::PARAM_STR);
@@ -133,6 +137,11 @@ class Task
         return 0;
     }
 
+    /*
+     * タスクのアップデート
+     * @param array
+     * @return boolean
+     */
     public function upTask($tasks){
         $sql = "UPDATE tasks set ";
 

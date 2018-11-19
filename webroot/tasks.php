@@ -19,10 +19,7 @@ if ($mode == 'add') {
     if ($session->get('token') == filter_post('token')) {
         $tasks = [
             'userid' => $session->get('userid'),
-            'rank' => filter_post('rank'),
-            'tag' => filter_post('tag'),
-            'date' => filter_post('date'),
-            'work' => filter_post('work'),
+            'linetask' => filter_post('linetask'),
             ];
         $session->regenerate();
         $session->set('token', session_id());
