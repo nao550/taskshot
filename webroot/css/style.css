@@ -59,3 +59,19 @@
 .sidemenu dd {
     margin-bottom: 3px;
 }
+
+.rank0 {
+    display: none;
+}
+
+.rank1 {
+    color: gray;
+}
+
+.rank2 {
+    color: blue;
+}
+
+.rank3 {
+    color: red;
+}

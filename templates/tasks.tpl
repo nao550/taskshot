@@ -35,7 +35,17 @@
             </tr>
             {foreach item=tasks from=$arTask}
               <tr>
-                <td class="editable taskrank">{$tasks.rank}</td>
+                <td class="editable taskrank">
+                  {if $tasks.rank == '0'}
+                    <span class="rank0">■</span>
+                  {elseif $tasks.rank == '1'}
+                    <span class="rank1">■</span>
+                  {elseif $tasks.rank == '2'}
+                    <span class="rank2">■</span>
+                  {elseif $tasks.rank == '3'}
+                    <span class="rank3">■</span>
+                  {/if}
+                </td>
                 <td class="editable tasktag">{$tasks.tag}</td>
                 <td class="editable taskdate">{$tasks.date}</td>
                 <td class="editable taskwork">{$tasks.work}</td>
