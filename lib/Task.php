@@ -86,37 +86,19 @@ class Task
      */
     public function addTask($tasks)
     {
-        $artasks = explode(' ', $tasks['linetask']);
-        foreach ($artasks as $task) {
-            // set rank
-            if (substr($task, 0, 1) === '!'){
-                $tasks['rank'] = substr($task, 1);
-            }
-            //  set tag
-            elseif (substr($task, 0, 1) === '#'){
-                $tasks['tag'] = substr($task, 1);
-            }
-            // set area
-            elseif (substr($task, 0, 1) === '@'){
-                $tasks['area'] = substr($task, 1);
-            }
-            // set date
-            elseif (substr($task, 0, 1) === '^'){
-                $tasks['date'] = substr($task, 1);
-            } else {
-                $tasks['work'] = $task;
-            }
-        }
+        $userid = $tasks['userid'];
 
-        $chkdate = new Querystr;
-        $date = $chkdate->chkDate($tasks['date']);
+        $qstr = new Querystr ;
+        $tasks = $qstr->separateLineTask($tasks['linetask']);
+
+        $date = $qstr->chkDate($tasks['date']);
 
         $sql = 'INSERT INTO tasks (userid, rank, tag, date, work, '.
            'compflg, regdate ) '.
            'VALUE (:userid, :rank, :tag, :date, :work, 0, NOW());';
 
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':userid', $tasks['userid'], PDO::PARAM_STR);
+        $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
         $stmt->bindValue(':rank', $tasks['rank'], PDO::PARAM_STR);
         $stmt->bindValue(':tag', $tasks['tag'], PDO::PARAM_STR);
         $stmt->bindValue(':date', $date, PDO::PARAM_STR);
