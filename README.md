@@ -20,6 +20,8 @@ Taskshot is task management system.
 - Rank, Date 順でのソート
 - 初期表示画面の日付ソート設定
 - 設定画面の作成
+- 日付入力パターンの追加
+- 表示の一行レイアウト化
 
 
 ### 繰り返しタスク
