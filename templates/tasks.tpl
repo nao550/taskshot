@@ -6,57 +6,47 @@
 {include file='sidemenu.tpl'}
   <div class="main">
     <div class="container-fluid">
-      <div class="row"
-       <div class="col-md-12 tasklist">
-        <table class="table table-condensed" id="tasktable">
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Tag</th>
-              <th>Date</th>
-              <th>Work</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <form class="form-inline" name="addtask" action="#" method="POST">
-                <td colspan="4">
-                  <div class="form-group">
-                    <input type="text" class="form-control" name="linetask">
-                  </div>
-                </td>
-
-                <td>
-                  <input type="hidden" id="token" name="token" value="{$token}" />
-                  <button class="btn btn-default" type="submit" name="mode" value="add">add</button>
-                </td>
-              </form>
-            </tr>
-            {foreach item=tasks from=$arTask}
-              <tr>
-                <td class="editable taskrank">
-                  {if $tasks.rank == '0'}
-                    <span class="rank0">■</span>
-                  {elseif $tasks.rank == '1'}
-                    <span class="rank1">■</span>
-                  {elseif $tasks.rank == '2'}
-                    <span class="rank2">■</span>
-                  {elseif $tasks.rank == '3'}
-                    <span class="rank3">■</span>
-                  {/if}
-                </td>
-                <td class="editable tasktag">{$tasks.tag}</td>
-                <td class="editable taskdate">{$tasks.date}</td>
-                <td class="editable taskwork">{$tasks.work}</td>
-                <td class="taskcd"><span hidden>{$tasks.cd}</span>
-                  <button class="btn btn-default" name="endTask" onClick="endTask({$tasks.cd})">End</button>
-                </td>
-              </tr>
-            {/foreach}
-          </tbody>
-        </table>
+      <div class="row tasklist">
+        <form name="addtask" action="#" method="POST">
+          <div class="col-xs-10">
+            <input type="text" class="form-control" name="linetask" />
+          </div>
+          <div class="col-xs-2">
+            <input type="hidden" id="token" name="token" value="{$token}" />
+            <button class="btn btn-default" type="submit" name="mode" value="add">add</button>
+          </div>
+        </form>
       </div>
+      {foreach item=tasks from=$arTask}
+        <div class="row tasklist align-self-center">
+          <div class="col-xs-10 editable">
+            <span class="task
+              {if $tasks.rank == '0'}
+                rank0
+              {elseif $tasks.rank == '1'}
+                rank1
+              {elseif $tasks.rank == '2'}
+                rank2
+              {elseif $tasks.rank == '3'}
+                rank3
+              {/if}
+                  ">
+              {$tasks.work}&nbsp;
+              {foreach from=","|explode:$tasks.tag item="tag"}
+                <span class="badge badge-secondary">{$tag}</span>
+              {/foreach}
+            </span>
+            <span class="date">
+              {$tasks.date}
+            </span>
+          </div>
+          <div class="col-xs-2">
+            <span hidden>{$tasks.cd}</span>
+
+            <button class="btn btn-default" name="endTask" onClick="endTask({$tasks.cd})">End</button>
+          </div>
+        </div>
+      {/foreach}
     </div>
   </div>
   <script src="./js/tasks.js"></script>
