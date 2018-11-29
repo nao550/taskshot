@@ -8,6 +8,8 @@ Taskshot is task management system.
 
 
 ## 検討事項
+
+- (181129:end) 初期表示画面の日付ソート設定→全ページ日付優先でソート
 - (181119:del) rank でクリッカブル編集にしたら、Combbox を表示するべきか？
  コンボボックスがなくなった
 - ポモドーロタイマーを付けるか？
@@ -18,7 +20,6 @@ Taskshot is task management system.
 ## すること
 
 - Rank, Date 順でのソート
-- 初期表示画面の日付ソート設定
 - 設定画面の作成
 - 日付入力パターンの追加
 - 表示の一行レイアウト化
