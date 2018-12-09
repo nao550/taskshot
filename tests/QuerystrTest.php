@@ -7,13 +7,11 @@ use ftech\Querystr;
 class QuerystrTest extends TestCase
 {
     private $target;
-    private $date;
     private $linetask;
 
     public function Setup()
     {
         $this->target = new Querystr;
-        $this->date = date('Y-m-d',time());
         $this->linetask = "hogahoga #tag ^2018-11-15 @京都 !1";
         $this->taskonly = "hogahoga";
 
@@ -23,14 +21,44 @@ class QuerystrTest extends TestCase
 
     public function testchkDate()
     {
+        $date = date('Y-m-d',time());
+        $date2sla = date('m/d',time());
+        $date2hyp = date('m-d',time());
+
+
         // 日付を直接入力
-        $this->assertEquals(date('Y-m-d',time()), $this->target->chkDate($this->date));
+        // 0000-00-00 形式
+        $this->assertEquals($date, $this->target->chkDate(date('Y-m-d',time())));
+
+        // 0000/00/00 形式
+        $this->assertEquals($date, $this->target->chkDate(date("Y\/m\/d",time())));
+
+        // 12/12 形式
+        $this->assertEquals($date, $this->target->chkDate($date2sla));
+
+        // 12-12 形式
+        $this->assertEquals($date, $this->target->chkDate($date2hyp));
+
         // today を引数、今日の日付が返り値
-        $this->assertEquals(date('Y-m-d',time()), $this->target->chkDate('today'));
+        $this->assertEquals($date, $this->target->chkDate('today'));
+
         // yestarday が引数、昨日の日付が返り値
         $this->assertEquals(date('Y-m-d', mktime(0,0,0,date('m'), date('d')-1, date('y'))), $this->target->chkDate('yestarday'));
+
         // tomorrow が引数、明日の日付が返り値
         $this->assertEquals(date('Y-m-d',mktime(0,0,0,date('m'), date('d')+1, date('y'))), $this->target->chkDate('tomorrow'));
+    }
+
+    public function testsCompareDate(){
+        $now = date('Y-m-d', mktime(0,0,0,date('m'),date('d'),date('y')));
+        $olddate =  date('Y-m-d', mktime(0,0,0,date('m'),date('d')-10,date('y')));
+        $oneyeardate =  date('Y-m-d', mktime(0,0,0,date('m'),date('d')-10,date('y')+1));
+        $future = date('Y-m-d', mktime(0,0,0,date('m'),date('d')+1,date('y')));
+
+
+        $this->assertEquals($now, $this->target->compareDate($now));
+        $this->assertEquals($oneyeardate, $this->target->compareDate($olddate));
+        $this->assertEquals($future, $this->target->compareDate($future));
     }
 
     public function testSeparateLineTask()

@@ -28,35 +28,79 @@ class Querystr
      */
     public function chkDate($str)
     {
+        $date = '';
 
-        if (isset($str)) {
-            if (preg_match('/20[0-9][0-9]-[0-1][1-9]-[0-3][0-9]/', $str)) {
-                return $str;
-            }
-            switch ($str) {
-                case 'today':
-                case '今日':
-                    return date('Y-m-d', time());
-                    break;
-                case 'yestarday':
-                case '昨日':
-                    return date('Y-m-d', mktime(0, 0, 0, date('m'), date('d')-1, date('y')));
-                    break;
-                case 'tomorrow':
-                case '明日':
-                    return date('Y-m-d', mktime(0, 0, 0, date('m'), date('d')+1, date('y')));
-                    break;
-                default:
-                    return date('Y-m-d', time());
-            }
+        if (! isset($str)) {
+            return '';
         }
+
+        // 0000-00-00 形式
+        if (preg_match('/^20[0-9][0-9]-[0-1][1-9]-[0-3][0-9]/', $str)) {
+            $date = $str;
+        }
+
+        // 0000/00/00 形式
+        if (preg_match('#^20\d{1,2}/\d{1,2}/\d{1,2}#', $str)) {
+            $date = str_replace('/', '-', $str);
+        }
+
+        // 00/00 形式
+        if (preg_match('#^\d{1,2}/\d{1,2}#', $str)) {
+            $date = str_replace('/', '-', $str);
+            $date = '2018-'.$date;
+        }
+
+        // 00-00 形式
+        if (preg_match('#^\d{1,2}-\d{1,2}#', $str)) {
+            $date = '2018-'.$str;
+        }
+
+        $date = $this->compareDate($date);
+
+        switch ($str) {
+            case 'today':
+            case '今日':
+                return date('Y-m-d', time());
+                break;
+            case 'yestarday':
+            case '昨日':
+                return date('Y-m-d', mktime(0, 0, 0, date('m'), date('d')-1, date('y')));
+                break;
+            case 'tomorrow':
+            case '明日':
+                return date('Y-m-d', mktime(0, 0, 0, date('m'), date('d')+1, date('y')));
+                break;
+            default:
+        }
+
+        return $date;
     }
 
 
     /*
-     *  separateLineTask
-       @param string
-       @return array
+     * compareDate
+     * 日付の比較、与えられた日付が古ければ、1年プラス
+     * @param date 0000-00-00
+     * @return date 0000-00-00
+     */
+    public function compareDate( $strdate )
+    {
+        $date = new \DateTime($strdate);
+        $now = new \DateTime();
+        $diff = $date->diff($now);
+
+        // echo $strdate.':diff'.$diff->format('%a').PHP_EOL;
+        if ((int)$diff->format('%a')) {
+            return $date->modify('+1 year')->format('Y-m-d');
+        } else {
+            return $date->format('Y-m-d');
+        }
+    }
+
+    /*
+     * separateLineTask
+     * @param string
+     * @return array
      */
     public function separateLineTask($linetask)
     {
