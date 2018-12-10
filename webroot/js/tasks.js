@@ -6,8 +6,13 @@ $(function () {
 });
 
 $(function() {
-    $(".editable").click(edit_toggle());
-});
+    $('.taskline').on('click', function(){
+        val = $(this).children('.taskcd').text();
+//        alert("hoge" + val);
+        window.open("taskline.php?taskid="+val);
+    });
+})
+
 
 function edit_toggle(){
     var edit_flag = false;
