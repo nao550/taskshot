@@ -20,7 +20,7 @@
       {foreach item=tasks from=$arTask}
         <div class="row tasklist align-self-center">
           <div class="col-xs-10 taskline" style="padding-top: 3px;padding-bottom: 2px">
-            <div class="taskcd hidden" >{$tasks.cd}</div>
+            <div class="cd hidden" >{$tasks.cd}</div>
             <span class="task
               {if $tasks.rank == '0'}
                 rank0

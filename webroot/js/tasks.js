@@ -7,8 +7,8 @@ $(function () {
 
 $(function() {
     $('.taskline').on('click', function(){
-        taskcd = $(this).children('.taskcd').text();
-        window.location.href = "taskline.php?taskcd="+taskcd ;
+        cd = $(this).children('.cd').text();
+        window.location.href = "taskline.php?cd="+cd ;
     });
 })
 
@@ -18,7 +18,7 @@ function edit_toggle(){
     return function(){
         if ( edit_flag ) return;
 
-        var taskid = [$(this).siblings('.taskcd').children('span').text(), $('#token').val()];
+        var taskid = [$(this).siblings('.cd').children('span').text(), $('#token').val()];
         var $input = $("<input>").attr("type","text").val($(this).text());
 
         $(this).html($input);
@@ -71,10 +71,10 @@ function logout(){
     }
 }
 
-function endTask(taskcd){
+function endTask(cd){
     var $form = $('<form>', {'action':'#', 'method':'POST'});
     $form.append($('<input>', {'type':'hidden', 'name':'mode', 'value':'endTask'}));
-    $form.append($('<input>', {'type':'hidden', 'name':'taskcd','value': taskcd}));
+    $form.append($('<input>', {'type':'hidden', 'name':'cd','value': cd}));
     $form.append($('</form>'));
     $form.appendTo(document.body);
     $form.submit();

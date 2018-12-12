@@ -19,11 +19,11 @@ $mode = filter_post('mode');
 
 if ($mode == 'RevertTask') {
     if ($session->get('token') == filter_post('token')) {
-        $taskcd = filter_post('taskcd');
-        $task->RevertTask($taskcd);
+        $cd = filter_post('cd');
+        $task->RevertTask($cd);
         $session->regenerate();
         $session->set('token', session_id());
-        $task->RevertTask($taskcd);
+        $task->RevertTask($cd);
     }
 }
 

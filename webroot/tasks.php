@@ -45,11 +45,16 @@ if ($mode == 'upTask') {
 }
 
 if ($mode == 'endTask') {
-    $taskcd = filter_post('taskcd');
-    if($task->endTask($taskcd)){
-        $endtaskcd = $taskcd;
-    }
+    $cd = filter_post('cd');
+    $task->endTask($cd);
 }
+
+if ($mode == 'delTask') {
+    // ここに cdxb の存在チェック入れたほうがいい？
+    $cd = filter_post('cd');
+    $task->delTask($cd);
+}
+
 
 if ($mode == 'logout') {
     $session->clear();
