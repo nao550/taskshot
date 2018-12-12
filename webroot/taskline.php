@@ -10,9 +10,9 @@ $task = new ftech\Task;
 $session->start();
 $session->set('token', session_id());
 
-$taskcd = filter_get('taskcd');
+$cd = filter_get('cd');
 
-$arTask = $task->getOneTask( $session->get('userid'), $taskcd );
+$arTask = $task->getOneTask( $session->get('userid'), $cd );
 
 $smarty->assign('task', $arTask[0]);
 $smarty->assign('token', $session->get('token'));

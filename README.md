@@ -20,6 +20,7 @@ Taskshot is task management system.
 - 設定画面の作成
 - 表示の一行レイアウト化
 
+- (181212:end) del ボタンの追加
 - (181212:end) time 項目の追加
 - (181212:end) bug:work にスペースがあると後半しか登録されない
 - (181209:end) dayinput g日付入力パターンの追加

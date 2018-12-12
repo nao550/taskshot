@@ -33,7 +33,7 @@
               </div>
               <div class="col-xs-2">
                 <form name="reverttask" action="#" method="post" style="margin-bottom: 0px";>
-                  <input type="hidden" name="taskcd" value="{$tasks.cd}" />
+                  <input type="hidden" name="cd" value="{$tasks.cd}" />
                   <input type="hidden" id="token" name="token" value="{$token}" />
                   <input type="hidden" name="mode" value="RevertTask" />
                   <button type="submit" class="btn btn-default" name="RevertTask">Revert</button>

@@ -81,18 +81,18 @@ class Task
     }
 
     /*
-     * task を taskcd で1個取得
+     * task を cd で1個取得
      * getOneTask
      * @param int
      * @return array
      */
-    public function getOneTask($userid, $taskcd)
+    public function getOneTask($userid, $cd)
     {
-        $sql = 'select * from tasks where userid = :userid and cd = :taskcd';
+        $sql = 'select * from tasks where userid = :userid and cd = :cd';
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
-        $stmt->bindValue(':taskcd', $taskcd, PDO::PARAM_STR);
+        $stmt->bindValue(':cd', $cd, PDO::PARAM_STR);
         $stmt->execute();
         return ($stmt->fetchAll());
     }
@@ -132,29 +132,46 @@ class Task
 
     /*
      * task に終了フラグを設定
-     * @param int $taskcd
+     * @param int $cd
      * @return boolen
      */
-    public function endTask($taskcd)
+    public function endTask($cd)
     {
         $sql = "UPDATE tasks set compflg='1', eddate = NOW() where cd=:cd ;";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':cd', $taskcd, PDO::PARAM_STR);
+        $stmt->bindValue(':cd', $cd, PDO::PARAM_STR);
         $stmt->execute();
         return 0;
+    }
+
+    /*
+     * task を削除
+     * @param int $cd
+     * @return boolen
+     */
+    public function delTask($cd)
+    {
+        $sql = "DELETE FROM tasks WHERE cd=:cd ;";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':cd', $cd, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 
 
     /*
      * task に終了フラグを設定
-     * @param int $taskcd
+     * @param int $cd
      * @return boolen
      */
-    public function RevertTask($taskcd)
+    public function RevertTask($cd)
     {
         $sql = "UPDATE tasks set compflg='0', eddate = '' where cd=:cd ;";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':cd', $taskcd, PDO::PARAM_STR);
+        $stmt->bindValue(':cd', $cd, PDO::PARAM_STR);
         $stmt->execute();
         return 0;
     }
