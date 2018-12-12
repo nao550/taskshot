@@ -19,6 +19,10 @@ Taskshot is task management system.
 - Rank, Date 順でのソート
 - 設定画面の作成
 - 表示の一行レイアウト化
+- end tasks の日付を終了日順にする
+- end tasks のページング
+- task 項目のタグからのリンク
+- sidemenuのタグクラウド
 
 - (181212:end) del ボタンの追加
 - (181212:end) time 項目の追加
