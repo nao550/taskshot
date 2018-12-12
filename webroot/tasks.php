@@ -31,8 +31,12 @@ if ($mode == 'upTask') {
     if ($session->get('token') == filter_post('token')) {
         $tasks = [
             'cd' => filter_post('cd'),
-            'idclass' => filter_post('idclass'),
-            'idvalue' => filter_post('idvalue'),
+            'work' => filter_post('work'),
+            'date' => filter_post('date'),
+            'rank' => filter_post('rank'),
+            'tag' => filter_post('tag'),
+            'memo' => $_POST['memo'],
+            'userid' => $session->get('userid')
         ];
         $session->regenerate();
         $session->set('token', session_id());

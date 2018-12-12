@@ -6,8 +6,12 @@ $(function () {
 });
 
 $(function() {
-    $(".editable").click(edit_toggle());
-});
+    $('.taskline').on('click', function(){
+        taskcd = $(this).children('.taskcd').text();
+        window.location.href = "taskline.php?taskcd="+taskcd ;
+    });
+})
+
 
 function edit_toggle(){
     var edit_flag = false;
