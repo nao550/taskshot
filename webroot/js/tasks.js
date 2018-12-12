@@ -7,9 +7,8 @@ $(function () {
 
 $(function() {
     $('.taskline').on('click', function(){
-        val = $(this).children('.taskcd').text();
-//        alert("hoge" + val);
-        window.open("taskline.php?taskid="+val);
+        taskcd = $(this).children('.taskcd').text();
+        window.location.href = "taskline.php?taskcd="+taskcd ;
     });
 })
 

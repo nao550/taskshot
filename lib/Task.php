@@ -81,6 +81,23 @@ class Task
     }
 
     /*
+     * task を taskcd で1個取得
+     * getOneTask
+     * @param int
+     * @return array
+     */
+    public function getOneTask($userid, $taskcd)
+    {
+        $sql = 'select * from tasks where userid = :userid and cd = :taskcd';
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
+        $stmt->bindValue(':taskcd', $taskcd, PDO::PARAM_STR);
+        $stmt->execute();
+        return ($stmt->fetchAll());
+    }
+
+    /*
      * task を一個追加
      * @param array $tasks
      * @return boolen
@@ -145,41 +162,20 @@ class Task
      */
     public function upTask($tasks){
         $sql = "UPDATE tasks set ";
-
-        switch ($tasks['idclass']) {
-            case 'taskrank':
-                $sql .= " rank=:taskrank ";
-                break;
-            case 'tasktag' :
-                $sql .= " tag=:tasktag ";
-                break;
-            case 'taskdate' :
-                $sql .= " date=:taskdate ";
-                break;
-            case 'taskwork' :
-                $sql .= " work=:taskwork ";
-                break;
-            default:
-                exit();
-        }
+        $sql .= " rank=:rank, ";
+        $sql .= " tag=:tag, ";
+        $sql .= " date=:date, ";
+        $sql .= " work=:work, ";
+        $sql .= " memo=:memo ";
         $sql .= "WHERE cd=:cd ";
 
-        $stmt = $this->pdo->prepare($sql);
-        switch ($tasks['idclass']) {
-            case 'taskrank':
-                $stmt->bindValue(':taskrank', $tasks['idvalue'], PDO::PARAM_STR);
-                break;
-            case 'tasktag':
-                $stmt->bindValue(':tasktag', $tasks['idvalue'], PDO::PARAM_STR);
-                break;
-            case 'taskdate':
-                $stmt->bindValue(':taskdate', $tasks['idvalue'], PDO::PARAM_STR);
-                break;
-            case 'taskwork':
-                $stmt->bindValue(':taskwork', $tasks['idvalue'], PDO::PARAM_STR);
-                break;
-        }
 
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':rank', $tasks['rank'], PDO::PARAM_STR);
+        $stmt->bindValue(':tag', $tasks['tag'], PDO::PARAM_STR);
+        $stmt->bindValue(':date', $tasks['date'], PDO::PARAM_STR);
+        $stmt->bindValue(':work', $tasks['work'], PDO::PARAM_STR);
+        $stmt->bindValue(':memo', $tasks['memo'], PDO::PARAM_STR);
         $stmt->bindValue(':cd', $tasks['cd'], PDO::PARAM_STR);
         $stmt->execute();
         return 0;
