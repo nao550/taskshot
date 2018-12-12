@@ -20,6 +20,8 @@ Taskshot is task management system.
 - 設定画面の作成
 - 表示の一行レイアウト化
 
+- (181212:end) time 項目の追加
+- (181212:end) bug:work にスペースがあると後半しか登録されない
 - (181209:end) dayinput g日付入力パターンの追加
 - (181129:end) 初期表示画面の日付ソート設定→全ページ日付優先でソート
 - (181119:del) rank でクリッカブル編集にしたら、Combbox を表示するべきか？

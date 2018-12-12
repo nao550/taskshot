@@ -111,19 +111,23 @@ class Task
 
         $date = $qstr->chkDate($tasks['date']);
 
-        $sql = 'INSERT INTO tasks (userid, rank, tag, date, work, '.
+        $sql = 'INSERT INTO tasks (userid, rank, tag, date, time, work, '.
            'compflg, regdate ) '.
-           'VALUE (:userid, :rank, :tag, :date, :work, 0, NOW());';
+           'VALUE (:userid, :rank, :tag, :date, :time, :work, 0, NOW());';
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
         $stmt->bindValue(':rank', $tasks['rank'], PDO::PARAM_STR);
         $stmt->bindValue(':tag', $tasks['tag'], PDO::PARAM_STR);
         $stmt->bindValue(':date', $date, PDO::PARAM_STR);
+        $stmt->bindValue(':time', $tasks['time'], PDO::PARAM_STR);
         $stmt->bindValue(':work', $tasks['work'], PDO::PARAM_STR);
-        $stmt->execute();
+        if ($stmt->execute()) {
+            return 0;
+        } else {
+            echo 'error'.PHP_EOL;
+        }
 
-        return 0;
     }
 
     /*

@@ -12,8 +12,8 @@ class QuerystrTest extends TestCase
     public function Setup()
     {
         $this->target = new Querystr;
-        $this->linetask = "hogahoga #tag ^2018-11-15 @京都 !1";
-        $this->taskonly = "hogahoga";
+        $this->linetask = "hoga hoga #tag ^2018-11-15 12:15 @京都 !1";
+        $this->taskonly = "hoga hoga";
 
 
 //    return $this->createFlatXMLDataSet(dirname(__FILE__).'/_files/QstDB.xml');
@@ -65,16 +65,18 @@ class QuerystrTest extends TestCase
     {
         $tasks = $this->target->separateLineTask( $this->linetask );
         $this->assertEquals ($tasks['rank'], '1');
-        $this->assertEquals ($tasks['work'], 'hogahoga');
+        $this->assertEquals ($tasks['work'], 'hoga hoga');
         $this->assertEquals ($tasks['tag'], 'tag');
         $this->assertEquals ($tasks['date'], '2018-11-15');
+        $this->assertEquals ($tasks['time'], '12:15');
         $this->assertEquals ($tasks['area'], '京都');
 
         $tasks = $this->target->separateLineTask($this->taskonly);
         $this->assertEquals ($tasks['rank'], '');
-        $this->assertEquals ($tasks['work'], 'hogahoga');
+        $this->assertEquals ($tasks['work'], 'hoga hoga');
         $this->assertEquals ($tasks['tag'], '');
         $this->assertEquals ($tasks['date'], '');
+        $this->assertEquals ($tasks['time'], '');
         $this->assertEquals ($tasks['area'], '');
     }
 

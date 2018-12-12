@@ -104,25 +104,50 @@ class Querystr
      */
     public function separateLineTask($linetask)
     {
+        $flg = '';
+        $tasks = array(
+            'work' => '',
+            'rank' => '',
+            'area' => '',
+            'tag' => '',
+            'date' => '',
+            'time' => ''
+        );
+
         $artasks = explode(' ', $linetask);
         foreach ($artasks as $task) {
+            if ($flg = '^') {
+                if ( preg_match('#\d{1,2}:\d{1,2}#', $task)) {
+                    $tasks['time'] = $task;
+                    continue;
+                }
+            }
             // set rank
             if (substr($task, 0, 1) === '!'){
                 $tasks['rank'] = substr($task, 1);
+                $flg = '!';
             }
             //  set tag
             elseif (substr($task, 0, 1) === '#'){
                 $tasks['tag'] = substr($task, 1);
+                $flg = '#';
             }
             // set area
             elseif (substr($task, 0, 1) === '@'){
                 $tasks['area'] = substr($task, 1);
+                $flg = '@';
             }
             // set date
             elseif (substr($task, 0, 1) === '^'){
                 $tasks['date'] = substr($task, 1);
+                $flg = '^';
             } else {
-                $tasks['work'] = $task;
+                if ($tasks['work'] == ''){
+                    $tasks['work'] = $task;
+                } else {
+                    $tasks['work'] .= ' '. $task;
+                }
+                $flg = 'w';
             }
         }
 
