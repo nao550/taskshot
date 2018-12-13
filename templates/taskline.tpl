@@ -29,7 +29,13 @@
         <div class="form-group">
           <label class="control-label col-xs-1" for="rank">Rank</label>
           <div class="col-xs-11">
-            <input type="text" class="form-control" id="rank" name="rank" value="{$task.rank}" />
+            <select class="form-control" name="rank" id="rank">
+              <option value=""></option>
+              <option value="0"{if $task.rank eq '0'}selected="selected"{/if}>0</option>
+              <option value="1"{if $task.rank eq '1'}selected="selected"{/if}>1</option>
+              <option value="2"{if $task.rank eq '2'}selected="selected"{/if}>2</option>
+              <option value="3"{if $task.rank eq '3'}selected="selected"{/if}>3</option>
+            </select>
           </div>
         </div>
         <div class="form-group">
