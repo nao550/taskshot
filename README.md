@@ -24,6 +24,7 @@ Taskshot is task management system.
 - task 項目のタグからのリンク
 - sidemenuのタグクラウド
 
+- (181213:end) task line で Rank をコンボボックス化
 - (181212:end) del ボタンの追加
 - (181212:end) time 項目の追加
 - (181212:end) bug:work にスペースがあると後半しか登録されない

@@ -98,7 +98,7 @@ class Querystr
     }
 
     /*
-     * separateLineTask
+     * 入力されたタスクを分割
      * @param string
      * @return array
      */
@@ -160,6 +160,12 @@ class Querystr
         return $tasks;
     }
 
+    /*
+     * rankChk($rank)
+     * ランクの範囲(0-3)をチェック
+     * @param int $rank
+     * @return int
+     */
     public function rankChk($rank)
     {
         if ( strlen($rank) !== 1){
