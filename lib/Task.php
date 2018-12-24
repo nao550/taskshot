@@ -45,6 +45,7 @@ class Task
             'mode' => FILTER_SANITIZE_ENCODED,
             'stdate' => FILTER_SANITIZE_ENCODED,
             'eddate' => FILTER_SANITIZE_ENCODED,
+            'tag' => FILTER_SANITIZE_ENCODED
         );
         $query = filter_var_array( $queryString, $args );
 
@@ -63,16 +64,23 @@ class Task
             $sql .= " and date <= :eddate ";
         }
 
+        if (!(empty($query['tag']))) {
+            $sql .= " and tag LIKE :tag " ;
+        }
+
         $sql .= " order by date asc";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
 
-        if (!(empty($query['stdate']))){
+        if (!(empty($query['stdate']))) {
             $stmt->bindValue(':stdate', $query['stdate'], PDO::PARAM_STR);
         }
-        if (!(empty($query['eddate']))){
+        if (!(empty($query['eddate']))) {
             $stmt->bindValue(':eddate', $query['eddate'], PDO::PARAM_STR);
+        }
+        if (!(empty($query['tag']))) {
+            $stmt->bindValue(':tag', '%'.$query['tag'].'%' , PDO::PARAM_STR);
         }
 
         $stmt->execute();

@@ -33,9 +33,13 @@
               {/if}
                   ">
               {$tasks.work}&nbsp;
-              {foreach from=","|explode:$tasks.tag item="tag"}
-                <span class="badge badge-secondary">{$tag}</span>
-              {/foreach}
+              {if ($tasks.tag) != ''}
+                {foreach from=","|explode:$tasks.tag item="tag"}
+                  <span class="badge badge-secondary">
+                    <a class="taglink" href="tasks.php?tag={$tag}">{$tag}</a>
+                  </span>
+                {/foreach}
+              {/if}
             </span>
             <span class="date">
               {$tasks.date}

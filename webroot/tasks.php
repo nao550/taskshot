@@ -55,7 +55,6 @@ if ($mode == 'delTask') {
     $task->delTask($cd);
 }
 
-
 if ($mode == 'logout') {
     $session->clear();
     header('location: '. $url . 'index.php');

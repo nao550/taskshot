@@ -14,7 +14,7 @@ if (empty($session->get('token')) || empty($session->get('userid'))) {
 }
 
 $mode = filter_post('mode');
-
+$arSettigns = $setting->getSettings($session->get('userid'));
 
 $smarty->assign('token', $session->get('token'));
 $smarty->assign('arSettings', $arSettings);
