@@ -33,7 +33,7 @@
         </li>
         <ul class="sub-menu collapse" id="settings">
           <li><a href="#"><i class="fa fa-angle-double-right"></i> Profile</a></li>
-          <li><a href="#"><i class="fa fa-angle-double-right"></i> Settings</a></li>
+          <li><a href="settings.php"><i class="fa fa-angle-double-right"></i> Settings</a></li>
           <li><a href="#" onClick="logout()"><i class="fa fa-angle-double-right"></i> Logout</a></li>
         </ul>
 
