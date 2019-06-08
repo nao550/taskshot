@@ -24,6 +24,7 @@ Taskshot is task management system.
 - task 項目のタグからのリンク
 - sidemenuのタグクラウド
 
+- (190608:end) bug: 日付の後ろに文字があると日付と一緒にdbに入ろうとする
 - (181213:end) task line で Rank をコンボボックス化
 - (181212:end) del ボタンの追加
 - (181212:end) time 項目の追加

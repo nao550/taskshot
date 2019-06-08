@@ -19,12 +19,27 @@ class QuerystrTest extends TestCase
 //    return $this->createFlatXMLDataSet(dirname(__FILE__).'/_files/QstDB.xml');
     }
 
+    public function testChkDateNull()
+    {
+        $this->assertEquals(date('Y-m-d', time()), $this->target->chkDate());
+    }
+
+    public function testChkDate8haifun()
+    {
+        $this->assertEquals("2030-01-01", $this->target->chkDate("2030-01-01"));
+    }
+
+    public function testChkDay2sla()
+    {
+        $this->assertEquals("2030-01-01", $this->target->chkDate("2030-1-1"));
+    }
+
     public function testchkDate()
     {
         $date = date('Y-m-d',time());
         $date2sla = date('m/d',time());
         $date2hyp = date('m-d',time());
-
+        $dateerr = $date. "hoge";
 
         // 日付を直接入力
         // 0000-00-00 形式
@@ -39,6 +54,15 @@ class QuerystrTest extends TestCase
         // 12-12 形式
         $this->assertEquals($date, $this->target->chkDate($date2hyp));
 
+        // 5/4 形式
+        $this->assertEquals('2020-05-04', $this->target->chkDate("5/4"));
+        $this->assertEquals("2019-11-11", $this->target->chkDate("11/11"));
+
+        // 0000-00-00hoge 形式 日付としてエラなので、日付登録しない
+        //        $this->assertEquals("0000-00-00", $this->target->chkDate($dateerr));
+        $this->assertEquals($date, $this->target->chkDate($dateerr));
+
+
         // today を引数、今日の日付が返り値
         $this->assertEquals($date, $this->target->chkDate('today'));
 
@@ -49,15 +73,26 @@ class QuerystrTest extends TestCase
         $this->assertEquals(date('Y-m-d',mktime(0,0,0,date('m'), date('d')+1, date('y'))), $this->target->chkDate('tomorrow'));
     }
 
-    public function testsCompareDate(){
-        $now = date('Y-m-d', mktime(0,0,0,date('m'),date('d'),date('y')));
+    public function testsCompareDateNow()
+    {
+        $now = new \DateTime();
+        $this->assertEquals($now->format('Y-m-d'), $this->target->compareDate($now->format('Y-m-d')));
+    }
+
+    public function testsCompareDateold()
+    {
         $olddate =  date('Y-m-d', mktime(0,0,0,date('m'),date('d')-10,date('y')));
         $oneyeardate =  date('Y-m-d', mktime(0,0,0,date('m'),date('d')-10,date('y')+1));
         $future = date('Y-m-d', mktime(0,0,0,date('m'),date('d')+1,date('y')));
 
 
-        $this->assertEquals($now, $this->target->compareDate($now));
         $this->assertEquals($oneyeardate, $this->target->compareDate($olddate));
+        $this->assertEquals($future, $this->target->compareDate($future));
+    }
+
+    public function testsCompareDateYear()
+    {
+        $future = date('Y-m-d', mktime(0,0,0,date('m'),date('d'),date('y')+10));
         $this->assertEquals($future, $this->target->compareDate($future));
     }
 
