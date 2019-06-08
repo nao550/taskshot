@@ -116,7 +116,7 @@ class Task
 
         $qstr = new Querystr ;
         $tasks = $qstr->separateLineTask($tasks['linetask']);
-
+var_dump($tasks)        ;
         $date = $qstr->chkDate($tasks['date']);
 
         $sql = 'INSERT INTO tasks (userid, rank, tag, date, time, work, '.

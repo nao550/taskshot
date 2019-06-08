@@ -19,7 +19,7 @@ Taskshot is task management system.
 - Rank, Date 順でのソート
 - 設定画面の作成
 - 表示の一行レイアウト化
-
+- bug: 日付の後ろに文字があると日付と一緒にdbに入ろうとする
 - (181213:end) task line で Rank をコンボボックス化
 - (181212:end) del ボタンの追加
 - (181212:end) time 項目の追加

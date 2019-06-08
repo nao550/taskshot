@@ -7,6 +7,8 @@
  */
 namespace ftech;
 
+mb_internal_encoding("UTF-8");
+
 class Querystr
 {
 
@@ -24,40 +26,58 @@ class Querystr
      * chkDate
      * 入力された日付キーワード解析
      * @param string
-     * @return string
+     * @return string 0000-00-00
      */
-    public function chkDate($str)
+    public function chkDate($str = "")
     {
-        $date = '';
 
-        if (! isset($str)) {
-            return '';
+        if (preg_match('#^(\d{1,4})[-/](\d{1,2})[-/](\d{1,2})$#', $str, $matches)) {
+            $year = $matches[1];
+            $month = $matches[2];
+            $day = $matches[3];
+
+            if (checkdate($month, $day, $year)) {
+                $date = date('Y-m-d', mktime(0, 0, 0, $month, $day, $year));
+            } else {
+                $date = date('Y-m-d', time());
+            }
         }
 
-        // 0000-00-00 形式
-        if (preg_match('/^20[0-9][0-9]-[0-1][1-9]-[0-3][0-9]/', $str)) {
-            $date = $str;
+        if (preg_match('#^(\d{1,2})[-/](\d{1,2})$#', $str, $matches)) {
+            $year = date('Y',mktime(0, 0, 0, date('m'), date('d'), date('y')));
+            $month = $matches[1];
+            $day = $matches[2];
+
+            if (checkdate($month, $day, $year)) {
+                $date = date('Y-m-d', mktime(0, 0, 0, $month, $day, $year));
+            } else {
+                $date = date('Y-m-d', time());
+            }
+
+            // 日付が今日より古ければ来年の日付
+            $date = $this->compareDate($date);
         }
 
-        // 0000/00/00 形式
-        if (preg_match('#^20\d{1,2}/\d{1,2}/\d{1,2}#', $str)) {
-            $date = str_replace('/', '-', $str);
+        // today, yestarday, tomorrow
+        if (empty($date)) {
+            $date = $this->chkDateString($str);
         }
 
-        // 00/00 形式
-        if (preg_match('#^\d{1,2}/\d{1,2}#', $str)) {
-            $date = str_replace('/', '-', $str);
-            $date = '2018-'.$date;
+        if (empty($date)) {
+            $date = date('Y-m-d', time());
         }
+        return $date;
+    }
 
-        // 00-00 形式
-        if (preg_match('#^\d{1,2}-\d{1,2}#', $str)) {
-            $date = '2018-'.$str;
-        }
 
-        $date = $this->compareDate($date);
-
-        switch ($str) {
+    /* chkDateString
+     * 文字列の日付指定を処理
+     * @param $string
+     * @return date
+     */
+    public function chkDateString($str)
+    {
+            switch ($str) {
             case 'today':
             case '今日':
                 return date('Y-m-d', time());
@@ -72,10 +92,7 @@ class Querystr
                 break;
             default:
         }
-
-        return $date;
     }
-
 
     /*
      * compareDate
@@ -85,12 +102,10 @@ class Querystr
      */
     public function compareDate( $strdate )
     {
+        $now = new \DateTime(date('Y-m-d', mktime(0,0,0,date('m'),date('d'),date('y'))));
         $date = new \DateTime($strdate);
-        $now = new \DateTime();
-        $diff = $date->diff($now);
 
-        // echo $strdate.':diff'.$diff->format('%a').PHP_EOL;
-        if ((int)$diff->format('%a')) {
+        if ( $now > $date) {
             return $date->modify('+1 year')->format('Y-m-d');
         } else {
             return $date->format('Y-m-d');
