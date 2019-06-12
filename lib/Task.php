@@ -1,4 +1,7 @@
 <?php
+/*
+
+*/
 namespace ftech;
 
 use PDO;
@@ -140,15 +143,20 @@ var_dump($tasks)        ;
 
     /*
      * task に終了フラグを設定
-     * @param int $cd
+     * @param string $userid, int $cd
      * @return boolen
      */
-    public function endTask($cd)
+    public function endTask($userid, $cd)
     {
-        $sql = "UPDATE tasks set compflg='1', eddate = NOW() where cd=:cd ;";
+        $sql = "UPDATE tasks set compflg='1', eddate = NOW() where cd=:cd and userid = :userid ;";
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':cd', $cd, PDO::PARAM_STR);
-        $stmt->execute();
+        $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
+        try {
+            $stmt->execute();
+        } catch ( Exception $e ){
+            echo 'Error: '. $e;
+        }
         return 0;
     }
 

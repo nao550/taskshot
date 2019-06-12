@@ -46,7 +46,7 @@
             </span>
           </div>
           <div class="col-xs-2">
-            <button class="btn btn-default" name="endTask" onClick="endTask({$tasks.cd})">End
+            <button class="btn btn-default" name="endTask" onClick="endTask('{$token}',{$tasks.cd})">End
             </button>
             <dutton>
 

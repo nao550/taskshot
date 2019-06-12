@@ -45,14 +45,24 @@ if ($mode == 'upTask') {
 }
 
 if ($mode == 'endTask') {
-    $cd = filter_post('cd');
-    $task->endTask($cd);
+    if ($session->get('token') == filter_post('token')) {
+        $cd = filter_post('cd');
+
+        $session->regenerate();
+        $session->set('token', session_id());
+        $task->endTask($session->get('userid'), $cd);
+    }
+
 }
 
 if ($mode == 'delTask') {
-    // ここに cdxb の存在チェック入れたほうがいい？
-    $cd = filter_post('cd');
-    $task->delTask($cd);
+    if ($session->get('token') == filter_post('token')) {
+        $cd = filter_post('cd');
+
+        $session->regenerate();
+        $session->set('token', session_id());
+        $task->endTask($session->get('userid'), $cd);
+    }
 }
 
 if ($mode == 'logout') {

@@ -71,9 +71,10 @@ function logout(){
     }
 }
 
-function endTask(cd){
+function endTask(token, cd){
     var $form = $('<form>', {'action':'#', 'method':'POST'});
     $form.append($('<input>', {'type':'hidden', 'name':'mode', 'value':'endTask'}));
+    $form.append($('<input>', {'type':'hidden', 'name':'token','value': token}));
     $form.append($('<input>', {'type':'hidden', 'name':'cd','value': cd}));
     $form.append($('</form>'));
     $form.appendTo(document.body);
