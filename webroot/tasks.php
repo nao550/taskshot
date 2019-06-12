@@ -33,6 +33,7 @@ if ($mode == 'upTask') {
             'cd' => filter_post('cd'),
             'work' => filter_post('work'),
             'date' => filter_post('date'),
+            'rep' => filter_post('rep'),
             'rank' => filter_post('rank'),
             'tag' => filter_post('tag'),
             'memo' => $_POST['memo'],
