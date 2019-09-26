@@ -20,6 +20,13 @@
           </div>
         </div>
         <div class="form-group">
+          <label class="control-label col-xs-1" for="rep">Repeat</label>
+          <div class="col-xs-11">
+            <input type="text" class="form-control" id="rep" name="rep" value="{$task.rep}" />
+          </div>
+        </div>
+
+        <div class="form-group">
           <label class="control-label col-xs-1" for="tag">Tag</label>
           <div class="col-xs-11">
             <input type="text" class="form-control" id="tag" name="tag" value="{$task.tag}" />

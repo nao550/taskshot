@@ -202,6 +202,7 @@ class Task
         $sql .= " rank=:rank, ";
         $sql .= " tag=:tag, ";
         $sql .= " date=:date, ";
+        $sql .= " rep=:rep, ";
         $sql .= " work=:work, ";
         $sql .= " memo=:memo ";
         $sql .= "WHERE cd=:cd ";
@@ -211,10 +212,16 @@ class Task
         $stmt->bindValue(':rank', $tasks['rank'], PDO::PARAM_STR);
         $stmt->bindValue(':tag', $tasks['tag'], PDO::PARAM_STR);
         $stmt->bindValue(':date', $tasks['date'], PDO::PARAM_STR);
+        $stmt->bindValue(':rep', $tasks['rep'], PDO::PARAM_STR);
         $stmt->bindValue(':work', $tasks['work'], PDO::PARAM_STR);
         $stmt->bindValue(':memo', $tasks['memo'], PDO::PARAM_STR);
         $stmt->bindValue(':cd', $tasks['cd'], PDO::PARAM_STR);
-        $stmt->execute();
+
+        try {
+            $stmt->execute();
+        } catch ( Exception $e ){
+            echo 'Error: '. $e;
+        }
         return 0;
 
     }

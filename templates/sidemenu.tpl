@@ -9,12 +9,22 @@
               <a href="#"><i class="fa fa-calendar fa-lg fa-fw sidebar-icon"></i> DateRange <span class="arrow"></span></a>
           </li>
           <ul class="sub-menu collapse in" id="daterange">
-              <li><a href="./endtasks.php?mode=endtasks"><i class="fa fa-angle-double-right"></i> End Tasks</a></li>
-              <li><a href="./tasks.php"><i class="fa fa-angle-double-right"></i> All</a></li>
-              <li><a href="./tasks.php?eddate={$arDayrange['today']['ed']}"><i class="fa fa-angle-double-right"></i> Today</a></li>
-              <li><a href="./tasks.php?stdate={$arDayrange['next3day']['st']}&eddate={$arDayrange['next3day']['ed']}"><i class="fa fa-angle-double-right"></i> 3 days</a></li>
-              <li><a href="./tasks.php?stdate={$arDayrange['thisweek']['st']}&eddate={$arDayrange['thisweek']['ed']}"><i class="fa fa-angle-double-right"></i> Week</a></li>
-              <li><a href="./tasks.php?stdate={$arDayrange['thismonth']['st']}&eddate={$arDayrange['thismonth']['ed']}"><i class="fa fa-angle-double-right"></i> Month</a></li>
+            <li{if $getmode eq 'endtasks'} class='active'{/if}>
+              <a href="./endtasks.php?getmode=endtasks"><i class="fa fa-angle-double-right"></i> End Tasks</a>
+            </li>
+            <li{if $getmode eq 'all'} class="active"{/if}>
+              <a href="./tasks.php?getmode=all"><i class="fa fa-angle-double-right"></i> All</a>
+            </li>
+            <li{if $getmode eq 'today'} class="active"{/if}>
+              <a href="./tasks.php?eddate={$arDayrange['today']['ed']}&amp;getmode=today"><i class="fa fa-angle-double-right"></i> Today</a>
+            </li>
+            <li{if $getmode eq 'next3day'} class="active"{/if}>
+              <a href="./tasks.php?stdate={$arDayrange['next3day']['st']}&eddate={$arDayrange['next3day']['ed']}&amp;getmode=next3day"><i class="fa fa-angle-double-right"></i> 3 days</a>
+            </li>
+            <li{if $getmode eq 'thisweek'} class="active"{/if}>
+              <a href="./tasks.php?stdate={$arDayrange['thisweek']['st']}&eddate={$arDayrange['thisweek']['ed']}&amp;getmode=thisweek"><i class="fa fa-angle-double-right"></i> Week</a></li>
+            <li{if $getmode eq 'thismonth'} class="active"{/if}>
+              <a href="./tasks.php?stdate={$arDayrange['thismonth']['st']}&eddate={$arDayrange['thismonth']['ed']}&amp;getmode=thismonth"><i class="fa fa-angle-double-right"></i> Month</a></li>
           </ul>
 
         <li  data-toggle="collapse" data-target="#tagcloud" class="collapsed">
