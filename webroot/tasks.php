@@ -14,6 +14,7 @@ if (empty($session->get('token')) || empty($session->get('userid'))) {
 }
 
 $mode = filter_post('mode');
+$getmode = filter_get('getmode');
 
 if ($mode == 'add') {
     if ($session->get('token') == filter_post('token')) {
@@ -101,7 +102,9 @@ $arDayrange = [
 ];
 
 $smarty->assign('arDayrange', $arDayrange);
+$smarty->assign('mode', $mode);
+$smarty->assign('getmode', $getmode);
 $smarty->assign('token', $session->get('token'));
 $smarty->assign('arTask', $arTask);
 $smarty->display('tasks.tpl');
-if ($_SERVER['SERVER_NAME'] == 'www.kyo-to.net') var_dump($_POST);
+if ($_SERVER['SERVER_NAME'] == 'www.kyo-to.net'){var_dump($_POST);}
