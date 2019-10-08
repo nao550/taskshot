@@ -71,7 +71,12 @@ class Task
             $sql .= " and tag LIKE :tag " ;
         }
 
-        $sql .= " order by date asc";
+        // EndTask なら新しい日付からソート
+        if ( $query['mode'] == 'endtasks') {
+            $sql .= " order by date desc";
+        } else {
+            $sql .= " order by date asc";
+        }
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
