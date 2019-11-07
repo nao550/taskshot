@@ -212,7 +212,6 @@ class Task
         $sql .= " memo=:memo ";
         $sql .= "WHERE cd=:cd ";
 
-        $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':rank', $tasks['rank'], PDO::PARAM_STR);
         $stmt->bindValue(':tag', $tasks['tag'], PDO::PARAM_STR);
         $stmt->bindValue(':date', $tasks['date'], PDO::PARAM_STR);
@@ -226,8 +225,6 @@ class Task
         } catch ( Exception $e ){
             echo 'Error: '. $e;
         }
-        var_dump($stmt->debugDumpParams());
         return 0;
-
     }
 }
