@@ -42,18 +42,12 @@ class Task
      */
     public function getTask($userid, $queryString)
     {
+        $query = $this->queryFmt( $queryString );
+
         $sql = 'select * from tasks where userid = :userid';
 
-        $args = array(
-            'mode' => FILTER_SANITIZE_ENCODED,
-            'stdate' => FILTER_SANITIZE_ENCODED,
-            'eddate' => FILTER_SANITIZE_ENCODED,
-            'tag' => FILTER_SANITIZE_ENCODED
-        );
-        $query = filter_var_array( $queryString, $args );
-
         // EndTask の抽出
-        if ( $query['mode'] == 'endtasks') {
+        if ( $query['rangemode'] == 'endtasks') {
             $sql .= " AND compflg = true ";
         } else {
             $sql .= " AND compflg = false ";
@@ -72,7 +66,7 @@ class Task
         }
 
         // EndTask なら新しい日付からソート
-        if ( $query['mode'] == 'endtasks') {
+        if ( $query['rangemode'] == 'endtasks') {
             $sql .= " order by date desc";
         } else {
             $sql .= " order by date asc";
@@ -228,4 +222,58 @@ class Task
         }
         return 0;
     }
+
+    /*
+     * queryFmt クエリ文字列のフォーマット
+     * @param array
+     * @return array
+     */
+    private function queryFmt($str){
+        $args = array(
+            'rangemode' => FILTER_SANITIZE_ENCODED,
+            'stdate' => FILTER_SANITIZE_ENCODED,
+            'eddate' => FILTER_SANITIZE_ENCODED,
+            'tag' => FILTER_SANITIZE_ENCODED
+        );
+
+        $query = filter_var_array( $str, $args );
+
+        if ($query['rangemode'] == "endtask") {
+        }
+
+        if ($query['rangemode'] == "all") {
+        }
+
+        if ($query['rangemode'] == "runout") {
+            $ed = date('Y-m-d', strtotime("-1 days"));
+        }
+
+        if ($query['rangemode'] == "today") {
+            $st = date('Y-m-d');
+            $ed = date('Y-m-d');
+        }
+
+        if ($query['rangemode'] == "next3day") {
+            $st = date('Y-m-d');
+            $ed = date('Y-m-d', strtotime("+3 days"));
+        }
+
+        if ($query['rangemode'] == "thisweek") {
+            $st = date('Y-m-d');
+            $ed = date('Y-m-1d', strtotime("+7 days"));
+        }
+
+        if ($query['rangemode'] == "thismonth") {
+            $st = date('Y-m-d');
+            $ed = date('Y-m-d', strtotime("+30 days"));
+        }
+
+        $array = array("rangemode" => $query['rangemode'],
+                    "tag" => $query['tag'],
+                    "stdate" => $st,
+                    "eddate" => $ed
+        );
+        return $array;
+    }
+
 }

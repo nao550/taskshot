@@ -23,6 +23,7 @@ Taskshot is task management system.
 - end tasks のページング
 - task 項目のタグからのリンク
 - sidemenuのタグクラウド
+- (191125:end) 日付範囲の保持
 - (191002:end) endTask のソート順の変更
 - (190612:end) endTask, upTask, delTask のtokenチェックの追加
 - (190611:end) endTask に $userid も入れるように修正
