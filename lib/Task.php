@@ -249,7 +249,6 @@ class Task
         }
 
         if ($query['rangemode'] == "today") {
-            $st = date('Y-m-d');
             $ed = date('Y-m-d');
         }
 
@@ -273,7 +272,9 @@ class Task
                     "stdate" => $st,
                     "eddate" => $ed
         );
+        var_dump($array);
         return $array;
+
     }
 
 }
