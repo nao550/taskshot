@@ -272,7 +272,6 @@ class Task
                     "stdate" => $st,
                     "eddate" => $ed
         );
-        var_dump($array);
         return $array;
 
     }
