@@ -10,7 +10,7 @@
           </li>
           <ul class="sub-menu collapse in" id="daterange">
             <li{if $rangemode eq 'endtasks'} class='active'{/if}>
-              <a href="./endtasks.php?mode=endtasks"><i class="fa fa-angle-double-right"></i> End Tasks</a>
+              <a href="./endtasks.php?rangemode=endtasks"><i class="fa fa-angle-double-right"></i> End Tasks</a>
             </li>
             <li{if $rangemode eq 'all'} class="active"{/if}>
               <a href="./tasks.php?rangemode=all"><i class="fa fa-angle-double-right"></i> All</a>

@@ -16,7 +16,6 @@ if (empty($session->get('token')) || empty($session->get('userid'))) {
 }
 
 $mode = filter_post('mode');
-$getmode = filter_get('getmode');
 
 if ($mode == 'RevertTask') {
     if ($session->get('token') == filter_post('token')) {
@@ -35,36 +34,16 @@ if ($mode == 'logout') {
 
 parse_str($_SERVER['QUERY_STRING'], $queryString);
 
+if (empty($queryString['rangemode'])) {
+    $queryString['rangemode'] = $session->get('rangemode');
+} else {
+    $session->set('rangemode', $queryString['rangemode']);
+}
+
 $arTask = $task->getTask( $session->get('userid'), $queryString );
 
-$arDayrange = [
-    'endtask' => 'endtask',
-    'all' => 'all',
-    'runout' => [
-            'ed' => date('Y-m-d', strtotime("-1 days"))
-    ],
-    'today' => [
-        'st' => date('Y-m-d'),
-        'ed' => date('Y-m-d')
-    ],
-    'next3day' => [
-        'st' => date('Y-m-d'),
-        'ed' => date('Y-m-d', strtotime("+3 days")),
-    ],
-    'thisweek' => [
-        'st' => date('Y-m-d'),
-        'ed' => date('Y-m-d', strtotime("+7 days")),
-
-    ],
-    'thismonth' => [
-        'st' => date('Y-m-d'),
-        'ed' => date('Y-m-d', strtotime("+30 days")),
-    ],
-];
-
-$smarty->assign('arDayrange', $arDayrange);
 $smarty->assign('mode', $mode);
-$smarty->assign('getmode', $getmode);
+$smarty->assign('rangemode', $queryString['rangemode']);
 $smarty->assign('token', $session->get('token'));
 $smarty->assign('arTask', $arTask);
 $smarty->display('endtasks.tpl');
