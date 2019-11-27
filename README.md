@@ -22,6 +22,8 @@ Taskshot is task management system.
 - end tasks のページング
 - sidemenuのタグクラウド
 
+- rank 1 を赤、3をグレーに変更
+
 - (191127:end) taskline で完了ボタン
 - (end) end tasks の日付を終了日順にする
 - (end) task 項目のタグからのリンク
