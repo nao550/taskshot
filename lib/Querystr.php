@@ -166,7 +166,7 @@ class Querystr
             }
         }
 
-        $tasks['rank'] = isset($tasks['rank'])? $tasks['rank'] : '';
+        $tasks['rank'] = isset($tasks['rank'])? $tasks['rank'] : '9';
         $tasks['tag'] = isset($tasks['tag'])? $tasks['tag'] : '';
         $tasks['area'] = isset($tasks['area'])? $tasks['area'] : '';
         $tasks['date'] = isset($tasks['date'])? $tasks['date'] : '';
