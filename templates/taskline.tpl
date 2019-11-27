@@ -57,6 +57,7 @@
             <input type="hidden" id="cd" name="cd" value="{$task.cd}" />
             <input type="hidden" id="token" name="token" value="{$token}" />
             <button class="btn btn-default" type="submit" name="mode" value="upTask">Update</button>
+            <button class="btn btn-default" type="submit" name="mode" value="endTask">End</button>
           </div>
           <div class="col-xs-1 col-xs-offset-9">
             <button class="btn btn-danger" type="submit" name="mode" value="delTask">Del</button>
