@@ -26,7 +26,7 @@ class Task
      */
     public function getAllTask( $userid )
     {
-        $sql = 'select * from tasks where compflg = false and userid = :userid  order by rank asc, date asc';
+        $sql = 'select * from tasks where compflg = false and userid = :userid  order by date asc';
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
         $stmt->execute();
