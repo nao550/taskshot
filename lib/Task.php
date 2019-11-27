@@ -26,7 +26,7 @@ class Task
      */
     public function getAllTask( $userid )
     {
-        $sql = 'select * from tasks where compflg = false and userid = :userid  order by date asc';
+        $sql = 'select * from tasks where compflg = false and userid = :userid  order by rank asc, date asc';
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
         $stmt->execute();
@@ -69,7 +69,7 @@ class Task
         if ( $query['rangemode'] == 'endtasks') {
             $sql .= " order by date desc";
         } else {
-            $sql .= " order by date asc";
+            $sql .= " order by rank asc, date asc";
         }
 
         $stmt = $this->pdo->prepare($sql);
@@ -206,6 +206,8 @@ class Task
         $sql .= " memo=:memo ";
         $sql .= "WHERE cd=:cd ";
         $stmt = $this->pdo->prepare($sql);
+
+        if (empty($tasks['rank'])){$tasks['rank'] = 9; }
 
         $stmt->bindValue(':rank', $tasks['rank'], PDO::PARAM_STR);
         $stmt->bindValue(':tag', $tasks['tag'], PDO::PARAM_STR);
