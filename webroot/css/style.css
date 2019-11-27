@@ -74,7 +74,7 @@
 .rank1 {
     border-left-width: 3px;
     border-left-style: solid;
-    border-left-color: gray;
+    border-left-color: red;
 }
 
 .rank2 {
@@ -86,7 +86,7 @@
 .rank3 {
     border-left-width: 3px;
     border-left-style: solid;
-    border-left-color: red;
+    border-left-color: gray;
 }
 
 .taglink {
