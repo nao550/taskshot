@@ -1,5 +1,11 @@
 #!/bin/tcsh
+
+cd ~/public_html/taskshotdev
+git checkout master
+git push
+
 cd ~/public_html/taskshot
 git pull origin master
+
 cd ../taskshotdev
 git checkout develop
