@@ -71,7 +71,7 @@ class Task
         } else {
             $sql .= " order by rank asc, date asc";
         }
-
+var_dump($sql);
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
 
@@ -104,7 +104,10 @@ class Task
         $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
         $stmt->bindValue(':cd', $cd, PDO::PARAM_STR);
         $stmt->execute();
-        return ($stmt->fetchAll());
+
+        $taskline = $stmt->fetchAll();
+
+        return $taskline;
     }
 
     /*

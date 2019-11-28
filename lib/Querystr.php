@@ -131,26 +131,29 @@ class Querystr
 
         $artasks = explode(' ', $linetask);
         foreach ($artasks as $task) {
+            // 日付に続けて時刻があるか
             if ($flg = '^') {
                 if ( preg_match('#\d{1,2}:\d{1,2}#', $task)) {
                     $tasks['time'] = $task;
                     continue;
                 }
             }
+
             // set rank
             if (substr($task, 0, 1) === '!'){
                 $tasks['rank'] = substr($task, 1);
-                $flg = '!';
             }
             //  set tag
             elseif (substr($task, 0, 1) === '#'){
-                $tasks['tag'] = substr($task, 1);
-                $flg = '#';
+                if (! empty($tasks['tag'])){
+                    $tasks['tag'] = $tasks['tag'] . ',' . substr($task, 1);
+                } else {
+                    $tasks['tag'] = substr($task, 1);
+                }
             }
             // set area
             elseif (substr($task, 0, 1) === '@'){
                 $tasks['area'] = substr($task, 1);
-                $flg = '@';
             }
             // set date
             elseif (substr($task, 0, 1) === '^'){
@@ -162,15 +165,10 @@ class Querystr
                 } else {
                     $tasks['work'] .= ' '. $task;
                 }
-                $flg = 'w';
             }
         }
 
-        $tasks['rank'] = isset($tasks['rank'])? $tasks['rank'] : '9';
-        $tasks['tag'] = isset($tasks['tag'])? $tasks['tag'] : '';
-        $tasks['area'] = isset($tasks['area'])? $tasks['area'] : '';
-        $tasks['date'] = isset($tasks['date'])? $tasks['date'] : '';
-        $tasks['work'] = isset($tasks['work'])? $tasks['work'] : '';
+        if (empty($tasks['rank'])){$tasks['rank'] = 9; }
 
         return $tasks;
     }
