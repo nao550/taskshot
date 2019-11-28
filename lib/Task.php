@@ -71,7 +71,7 @@ class Task
         } else {
             $sql .= " order by rank asc, date asc";
         }
-var_dump($sql);
+
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(':userid', $userid, PDO::PARAM_STR);
 
@@ -82,7 +82,7 @@ var_dump($sql);
             $stmt->bindValue(':eddate', $query['eddate'], PDO::PARAM_STR);
         }
         if (!(empty($query['tag']))) {
-            $stmt->bindValue(':tag', '%'.$query['tag'].'%' , PDO::PARAM_STR);
+            $stmt->bindValue(':tag', '%'.urldecode($query['tag']).'%' , PDO::PARAM_STR);
         }
 
         $stmt->execute();
