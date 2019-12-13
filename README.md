@@ -21,7 +21,10 @@ Taskshot is task management system.
 - 表示の一行レイアウト化
 - end tasks のページング
 - sidemenuのタグクラウド
+- endtask を再編集して追加する機能
 
+- (191213:end) taskline のフォームに autocomplete="off" の追加
+- (191213:end) tasks.php 表示時に taskline に focus()
 - (191128:end) 日本語タグがクリックでタググループ表示されない
 - (191128:end) 複数のタグを設定できるようにする
 - (191127:end) rankが設定されていればトップに表示

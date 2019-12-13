@@ -7,9 +7,9 @@
   <div class="main">
     <div class="container-fluid">
       <div class="row tasklist">
-        <form name="addtask" action="#" method="POST">
+        <form name="addtask" action="#" method="POST" autocomplete="off">
           <div class="col-xs-10">
-            <input type="text" class="form-control" name="linetask" />
+            <input type="text" class="form-control" name="linetask" id="linetask"/>
           </div>
           <div class="col-xs-2">
             <input type="hidden" id="token" name="token" value="{$token}" />
@@ -57,5 +57,10 @@
   </div>
 
   <script src="./js/tasks.js"></script>
+  <script>
+   window.onload = function(){
+       document.getElementById('linetask').focus();
+   }
+  </script>
 
 {include file='footer.tpl'}
